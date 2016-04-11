@@ -43,8 +43,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\CloseCommand.cs" />
+    <Compile Include="Model\FinishedTaskEventArgs.cs" />
+    <Compile Include="Model\GenerateCommand.cs" />
+    <Compile Include="Model\ICommandable.cs" />
+    <Compile Include="Model\IModel.cs" />
+    <Compile Include="Model\MultiplayArgs.cs" />
+    <Compile Include="Model\MultiplayCommand.cs" />
+    <Compile Include="Model\MultiplayManager.cs" />
+    <Compile Include="Model\MyModel.cs" />
+    <Compile Include="Model\PlayCommand.cs" />
+    <Compile Include="Model\PlayerMovedArgs.cs" />
+    <Compile Include="Model\PlayMoveInfo.cs" />
+    <Compile Include="Model\SolveCommand.cs" />
+    <Compile Include="Model\Task.cs" />
+    <Compile Include="Model\TaskInfo.cs" />
+    <Compile Include="Presenter\IPresenter.cs" />
+    <Compile Include="Presenter\MyPresenter.cs" />
+    <Compile Include="Presenter\TaskHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\ClientHandler.cs" />
+    <Compile Include="View\IView.cs" />
+    <Compile Include="View\MyView.cs" />
+    <Compile Include="View\Program.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
