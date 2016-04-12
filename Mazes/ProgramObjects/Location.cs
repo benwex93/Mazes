@@ -9,8 +9,8 @@ namespace Mazes
     public class Location
     {
         //stores location of node in array
-        public int col { get;}
-        public int row { get;}
+        public int col { get; set; }
+        public int row { get; set; }
         public Location(int col, int row)
         {
             this.col = col;

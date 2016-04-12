@@ -11,7 +11,7 @@ namespace Mazes
         /// <summary>
         /// game class which is used when creating a multiplayer game
         /// </summary>
-        public string name { get; }
+        public string name { get; set; }
         public Maze mazeOne { get; set; }
         public Maze mazeTwo { get; set; }
         /// <summary>
