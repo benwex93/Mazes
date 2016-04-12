@@ -82,6 +82,16 @@ namespace Mazes
                     new NodeDataClass(game.mazeOne.end.location.row, game.mazeOne.end.location.col)));
             }
         }
+        public static void Close(string gameName)
+        {
+            Game gameToClose = GDB.RetrieveGame(gameName);
+            if (gameToClose != null)
+            {
+                MDB.DeleteMaze(gameToClose.mazeOne);
+                MDB.DeleteMaze(gameToClose.mazeTwo);
+                GDB.DeleteGame(gameToClose);
+            }
+        }
         public static IDataClass GetData()
         {
             return data;

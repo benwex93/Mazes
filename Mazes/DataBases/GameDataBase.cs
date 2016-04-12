@@ -22,6 +22,14 @@ namespace Mazes
             gameList.Add(gameToAdd);
         }
         /// <summary>
+        /// Deletes game from database
+        /// </summary>
+        /// <param name="gameToDelete"></param>
+        public void DeleteGame(Game gameToDelete)
+        {
+            gameList.Remove(gameToDelete);
+        }
+        /// <summary>
         /// retrieves a game if it's already been created. Called by second player to connect
         /// </summary>
         /// <param name="name"></param>

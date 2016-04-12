@@ -25,6 +25,14 @@ namespace Mazes
             mazeList.Add(mazeToAdd);
         }
         /// <summary>
+        /// Deletes maze from list
+        /// </summary>
+        /// <param name="mazeToDelete"></param>
+        public void DeleteMaze(Maze mazeToDelete)
+        {
+            mazeList.Add(mazeToDelete);
+        }
+        /// <summary>
         /// retrieves maze from list, if exists, in order to solve it
         /// </summary>
         /// <param name="name"></param>
