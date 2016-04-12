@@ -10,7 +10,7 @@ namespace Mazes
     {
         int mazeSize;
         protected char solvedPathValue;
-        protected char visitedNodeValue = 'V';
+        protected char visitedNodeValue;
         /// <summary>
         /// Gets maze info for all first searchers
         /// </summary>
@@ -22,6 +22,7 @@ namespace Mazes
             this.start = mazeToSolve.start;
             this.end = mazeToSolve.end;
             this.solvedPathValue = mazeToSolve.mazeVals.solValue;
+            this.visitedNodeValue = mazeToSolve.mazeVals.GetRandomUnusedChar();
         }
         /// <summary>
         /// gets nodes successors of each node and returns them in a list

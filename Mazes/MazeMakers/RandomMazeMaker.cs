@@ -17,7 +17,8 @@ namespace Mazes
         int mazeSize;
         Node[,] mazeArray;
         char pathValue;
-        char mainPathValue = 'M';
+        char mainPathValue;
+        char visitedPathValue;
         public void CreateMaze(Maze mazeToMake)
         {
             this.mazeSize = mazeToMake.mazeSize;
@@ -25,7 +26,11 @@ namespace Mazes
             mazeArray = new Node[mazeSize, mazeSize];
             CreateStart(mazeToMake);
             CreateEnd(mazeToMake);
+            mainPathValue = mazeToMake.mazeVals.GetRandomUnusedChar();
+            visitedPathValue = mazeToMake.mazeVals.GetRandomUnusedChar();
             RandomizeRemainingNodes();
+            TraverveRemainingNodesDFS(mazeToMake.start, mazeToMake.start.location.col, mazeToMake.start.location.row);
+            ResetStartEndValues(mazeToMake);
         }
         public void CreateStart(Maze mazeToMake)
         {
@@ -288,6 +293,96 @@ namespace Mazes
                     }
                 }
             }
+        }
+        /// <summary>
+        /// DFS searches remaining nodes
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="col"></param>
+        /// <param name="row"></param>
+        public void TraverveNodesDFS(Node node, int col, int row)
+        {
+            node.specialVal = visitedPathValue;
+            //if not at starting node
+            List<int> directionsList = new List<int>();
+            for (int directionCases = 0; directionCases < 4; directionCases++)
+                directionsList.Add(directionCases);
+            //visits all nodes in order starting with random one 
+            while (directionsList.Count > 0)
+            {
+                int randomIndex = randomNumberGenerator.Next(0, directionsList.Count);
+                switch (directionsList.ElementAt(randomIndex))
+                {
+                    //go left
+                    case 0:
+                        if (col - 1 < 0) //if out of bounds
+                            node.left = null;
+                        //if in bounds can safely run check on maze to see if found available node
+                        else if (mazeArray[col - 1, row] == null)
+                        {
+                            mazeArray[col - 1, row] = new Node(col - 1, row, pathValue, node.lengthFromStart + 1);
+                            node.left = mazeArray[col - 1, row];
+                            TraverveNodesDFS(mazeArray[col - 1, row], col - 1, row);
+                        }
+                        //otherwise reached already visited node
+                        else if (mazeArray[col - 1, row].specialVal != visitedPathValue)
+                            TraverveNodesDFS(mazeArray[col - 1, row], col - 1, row);
+                        break;
+                    //go right
+                    case 1:
+                        if (col + 1 >= mazeSize) //if out of bounds
+                            node.right = null;
+                        //if in bounds can safely run check on maze to see if found available node
+                        else if (mazeArray[col + 1, row] == null)
+                        {
+                            mazeArray[col + 1, row] = new Node(col + 1, row, pathValue, node.lengthFromStart + 1);
+                            node.right = mazeArray[col + 1, row];
+                            TraverveNodesDFS(mazeArray[col + 1, row], col + 1, row);
+                        }
+                        //otherwise reached already visited node
+                        else if (mazeArray[col + 1, row].specialVal != visitedPathValue)
+                            TraverveNodesDFS(mazeArray[col + 1, row], col + 1, row);
+                        break;
+                    //go up
+                    case 2:
+                        if (row - 1 < 0) //if out of bounds
+                            node.up = null;
+                        //if in bounds can safely run check on maze to see if found available node
+                        else if (mazeArray[col, row - 1] == null)
+                        {
+                            mazeArray[col, row - 1] = new Node(col, row - 1, pathValue, node.lengthFromStart + 1);
+                            node.up = mazeArray[col, row - 1];
+                            TraverveNodesDFS(mazeArray[col, row - 1], col, row - 1);
+                        }
+                        //otherwise reached already visited node
+                        else if (mazeArray[col, row - 1].specialVal != visitedPathValue)
+                            TraverveNodesDFS(mazeArray[col, row - 1], col, row - 1);
+                        break;
+                    //go down
+                    case 3:
+                        if (row + 1 >= mazeSize) //if out of bounds
+                            node.down = null;
+                        //if in bounds can safely run check on maze to see if found available node
+                        else if (mazeArray[col, row + 1] == null)
+                        {
+                            mazeArray[col, row + 1] = new Node(col, row + 1, pathValue, node.lengthFromStart + 1);
+                            node.down = mazeArray[col, row + 1];
+                            TraverveNodesDFS(mazeArray[col, row + 1], col, row + 1);
+                        }
+                        //otherwise reached already visited node
+                        else if (mazeArray[col, row + 1].specialVal != visitedPathValue)
+                            TraverveNodesDFS(mazeArray[col, row + 1], col, row + 1);
+                        break;
+                    default:
+                        break;
+                }
+                directionsList.RemoveAt(randomIndex);
+            }
+        }
+        public void ResetStartEndValues(Maze mazeToMake)
+        {
+            mazeToMake.start.specialVal = mazeToMake.mazeVals.startValue;
+            mazeToMake.end.specialVal = mazeToMake.mazeVals.endValue;
         }
     }
 }
