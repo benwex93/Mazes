@@ -4,9 +4,7 @@ namespace Server
 {
 	public class PlayCommand : ICommandable
 	{
-		public PlayCommand ()
-		{
-		}
+		public PlayCommand () {}
 		public TaskInfo Execute(string details)
 		{
 			// details is simply the move done by the player

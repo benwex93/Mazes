@@ -20,21 +20,11 @@ namespace Server
 			this.p = p;
 			tHandler = p.MakeNewTaskHandler ();
 			tHandler.ReplyReady += new TaskHandler.ReplyReadyHandler (this.ReplyReady);
-			/*manager.AddTask ("generate", new GenerateTask ())/;
-			manager.AddTask ("solve", new SolveTask ());
-			manager.AddTask ("multiplayer", new MultiplayTask ());
-			manager.AddTask ("play", new PlayTask ());
-			manager.AddTask ("close", new CloseTask ()); */
 		}
-		//public void MakeOptions() {
-			//options.Add
-		//}
 
 		public void ReplyReady(object source, FinishedTaskEventArgs info)
 		{	
 			TaskHandler handler = (TaskHandler)source;
-			//if (info.stopListening)
-				//handler.ReplyReady -= this.ReplyReady;
 			if (info.toSend != "") {
 				byte[] data = new byte[5096];
 				data = Encoding.ASCII.GetBytes (info.toSend);
@@ -43,8 +33,8 @@ namespace Server
 			}
 		}
 
-		public void handle(Object State) {
-			//IPresenter presenter = (IPresenter)ThreadContext;
+		public void handle(Object State)
+        {
 			while (true) {
 				byte[] data = new byte[1024];
 				int recv = client.Receive (data);
@@ -53,13 +43,7 @@ namespace Server
 				string str = Encoding.ASCII.GetString (
 					data, 0, recv);
 				p.DoNewTask (str, tHandler);
-
-				//Console.WriteLine (str);
-				Console.WriteLine ("continues in parallel");
-				//data = Encoding.ASCII.GetBytes (str);
-				//client.Send (data, recv, SocketFlags.None);
 			}
-			Console.WriteLine ("left while");
 			client.Close ();
 		}
 	}

@@ -34,7 +34,6 @@ namespace Server
 			string restOfString = "";
 			Task task;
 			int firstSpace = fromClient.IndexOf (' ');
-			//Console.WriteLine (firstSpace);
 			if (firstSpace >= 0) {
 				command = fromClient.Substring (0, firstSpace);
 				restOfString = fromClient.Substring (firstSpace + 1);
@@ -42,14 +41,6 @@ namespace Server
 				task.Finished += new Task.FinishedHandler (handler.FinishedTask);
 				ThreadPool.QueueUserWorkItem(m.ExecuteTask, task);
 			}
-			//Console.WriteLine (command);
-			//string[] stringParts = {command, restOfString};
-
-			/*ICommandable task;
-			if (!options.TryGetValue(command, out task))
-				Console.WriteLine("404 command not found");
-			else */
-
 		}
 	}
 }

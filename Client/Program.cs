@@ -13,7 +13,6 @@ namespace Client
 		private static void ReceiveBack(Socket server)
 		{
 			try {
-				//Socket server = (Socket)ThreadContext;
                 while (true)
                 {
                     byte[] data = new byte[5096];
@@ -45,15 +44,6 @@ namespace Client
                         string input = Console.ReadLine();
                         if (input == "exit") break;
                         server.Send(Encoding.ASCII.GetBytes(input));
-                        //ThreadPool.QueueUserWorkItem(ReceiveBack, server);
-
-                        /*string input = Console.ReadLine();
-                        if (input == "exit") break;
-                        server.Send(Encoding.ASCII.GetBytes(input));
-                        byte[] data = new byte[1024];
-                        int recv = server.Receive(data);
-                        string stringData = Encoding.ASCII.GetString(data, 0, recv);
-                        Console.WriteLine(stringData); */
                     }
                 }
                 catch (SocketException e) { Console.WriteLine("Unable to connect to server." + e.ToString()); }

@@ -7,9 +7,7 @@ namespace Server
 {
 	public class MultiplayCommand : ICommandable
 	{
-		public MultiplayCommand ()
-		{
-		}
+		public MultiplayCommand () {}
 		public TaskInfo Execute(string details)
 		{
             Mazes.MazeProgram.Multiplayer(details);
@@ -24,15 +22,6 @@ namespace Server
             else
                 info.Set_Multi_Info((int)MultiplayInfo.Second_Request);
             info.SetMultGame(data.GetName());
-			/*bool isFirst = MazeButNot.Multiplayer.IsFirst ();
-			if (isFirst) {
-				Console.WriteLine ("is first");
-				info.Set_Multi_Info ((int) MultiplayInfo.First_Request);
-			} else {
-				Console.WriteLine ("is second");
-				info.Set_Multi_Info ((int) MultiplayInfo.Second_Request);
-			}
-			info.SetMultGame ("blerrrrf"); // Get name of multiplayer game */
 			return info;
 		}
 	}

@@ -45,24 +45,34 @@ namespace Server
 		public void Execute(ICommandable com)
 		{
 			info = com.Execute (this.details);
-			int mult_Info = info.Get_Multi_Info ();
-			if (mult_Info == (int)MultiplayInfo.No_Multiplay) {
-				string json = info.GetJson ();
-				FinishedTaskEventArgs finalInfo = new FinishedTaskEventArgs (json, true);
-				Finished (this, finalInfo);
-			} else if (mult_Info < (int)MultiplayInfo.Play_Request) { 
-				multi_manag.MultiplayReady += new MultiplayManager.MultiplayReadyHandler (MultiplayReady);
-				multi_manag.PlayerMoved += new MultiplayManager.PlayerMovedHandler (PlayerMoved);
-				multi_manag.EndGame += new MultiplayManager.EndGameHandler (EndGame);
-				if (mult_Info == (int)MultiplayInfo.First_Request)
-					multi_manag.FirstGameRequest (this);
-				else if (mult_Info == (int)MultiplayInfo.Second_Request)
-					multi_manag.SecondGameRequest (this);
-			} else if (mult_Info == (int)MultiplayInfo.Play_Request) {
-				multi_manag.PlayRequest (this);
-			} else { // mult_Info == MultiplayInfo.Close_Request
-				multi_manag.CloseRequest (this);
-			}
+            if (info != null)
+            {
+                int mult_Info = info.Get_Multi_Info();
+                if (mult_Info == (int)MultiplayInfo.No_Multiplay)
+                {
+                    string json = info.GetJson();
+                    FinishedTaskEventArgs finalInfo = new FinishedTaskEventArgs(json, true);
+                    Finished(this, finalInfo);
+                }
+                else if (mult_Info < (int)MultiplayInfo.Play_Request)
+                {
+                    multi_manag.MultiplayReady += new MultiplayManager.MultiplayReadyHandler(MultiplayReady);
+                    multi_manag.PlayerMoved += new MultiplayManager.PlayerMovedHandler(PlayerMoved);
+                    multi_manag.EndGame += new MultiplayManager.EndGameHandler(EndGame);
+                    if (mult_Info == (int)MultiplayInfo.First_Request)
+                        multi_manag.FirstGameRequest(this);
+                    else if (mult_Info == (int)MultiplayInfo.Second_Request)
+                        multi_manag.SecondGameRequest(this);
+                }
+                else if (mult_Info == (int)MultiplayInfo.Play_Request)
+                {
+                    multi_manag.PlayRequest(this);
+                }
+                else // mult_Info == MultiplayInfo.Close_Request
+                { 
+                    multi_manag.CloseRequest(this);
+                }
+            }
 		}
 
 		public void MultiplayReady(object source, MultiplayArgs a)

@@ -25,10 +25,6 @@ namespace Server
 		{
 			Task toDo = (Task)ThreadContext;
 			string commandType = toDo.GetCommandType ();
-
-			/*string[] parts = (string[])ThreadContext;
-			string command = parts [0];
-			string details = parts [1]; */
 			ICommandable command;
 			if (!options.TryGetValue (commandType, out command))
 				Console.WriteLine ("404 command not found");

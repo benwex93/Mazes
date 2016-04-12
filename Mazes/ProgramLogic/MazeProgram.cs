@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Configuration;
+
 namespace Mazes
 {
     public static class MazeProgram
@@ -7,7 +9,8 @@ namespace Mazes
         static MazeDataBase MDB = new MazeDataBase();
         static GameDataBase GDB = new GameDataBase();
         static CharVals mazeVals = new CharVals('S', 'E', '2', '0', '1');
-        const int mazeSize = 20;
+        static string sizeStr = ConfigurationManager.AppSettings["maze size"];
+        const int mazeSize = Int32.Parse(sizeStr);
         /*public MazeProgram()
         {
             MDB = new MazeDataBase();
@@ -58,7 +61,7 @@ namespace Mazes
         public static void Multiplayer(string name)
         {
             Game game = GDB.RetrieveGame(name);
-            if (game == null)
+            if (game == null) // player 16
             {
                 game = new Game(name, mazeSize, mazeVals);
                 GDB.AddGame(game);
@@ -70,7 +73,7 @@ namespace Mazes
                     new NodeDataClass(game.mazeTwo.start.location.row, game.mazeTwo.start.location.col),
                     new NodeDataClass(game.mazeTwo.end.location.row, game.mazeTwo.end.location.col)));
             }
-            else {
+            else { // player 2
                 MDB.AddMaze(game.mazeOne);
                 MDB.AddMaze(game.mazeTwo);
                 data = new MultiplayerDataClass(game.name, game.mazeTwo.name,

@@ -6,17 +6,35 @@ using System.Threading;
 
 namespace Server
 {
+    /// <summary>
+    /// The "View" object that implements the IView interface. This object handles
+    /// all connections with clients.
+    /// </summary>
 	public class MyView : IView
 	{
+        /// <summary>
+        /// A reference to the program's "Presenter" object
+        /// </summary>
 		private IPresenter p;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="p">
+        /// A reference to the Presenter object to be stored in this class</param>
 		public MyView (IPresenter p)
 		{
 			this.p = p;
 		}
+
+        /// <summary>
+        /// This function handles connections with potential clients. It creates a Socket,
+        /// listens for connections, and every time a client connects, it creates a new thread
+        /// to handle interactions with that client.
+        /// </summary>
 		public void DoConnections()
 		{
 			string portStr = ConfigurationManager.AppSettings ["port number"];
-			//string portStr = File.ReadAllText (@"/home/caleb/Desktop/app.config");
 			int port = Int32.Parse (portStr);
 			try {
 				IPEndPoint ipep = new IPEndPoint(IPAddress.Any, port);
@@ -25,12 +43,10 @@ namespace Server
 					newsock.Bind(ipep);
 					newsock.Listen(10);
 					while (true) {
-						Socket client = newsock.Accept();
-						ClientHandler handler = new ClientHandler(client, this.p);
-						//handler.MakeOptions ();
-						//ThreadPool.QueueUserWorkItem(new System.Threading.WaitCallback(handler.handle));
-						Thread t = new Thread(handler.handle);
-						t.Start();
+                        Socket client = newsock.Accept();
+                        ClientHandler handler = new ClientHandler(client, this.p);
+                        Thread t = new Thread(handler.handle);
+                        t.Start();
 					}
 				}
 			}
