@@ -300,7 +300,7 @@ namespace Mazes
         /// <param name="node"></param>
         /// <param name="col"></param>
         /// <param name="row"></param>
-        public void TraverveNodesDFS(Node node, int col, int row)
+        public void TraverveRemainingNodesDFS(Node node, int col, int row)
         {
             node.specialVal = visitedPathValue;
             //if not at starting node
@@ -322,11 +322,11 @@ namespace Mazes
                         {
                             mazeArray[col - 1, row] = new Node(col - 1, row, pathValue, node.lengthFromStart + 1);
                             node.left = mazeArray[col - 1, row];
-                            TraverveNodesDFS(mazeArray[col - 1, row], col - 1, row);
+                            TraverveRemainingNodesDFS(mazeArray[col - 1, row], col - 1, row);
                         }
                         //otherwise reached already visited node
                         else if (mazeArray[col - 1, row].specialVal != visitedPathValue)
-                            TraverveNodesDFS(mazeArray[col - 1, row], col - 1, row);
+                            TraverveRemainingNodesDFS(mazeArray[col - 1, row], col - 1, row);
                         break;
                     //go right
                     case 1:
@@ -337,11 +337,11 @@ namespace Mazes
                         {
                             mazeArray[col + 1, row] = new Node(col + 1, row, pathValue, node.lengthFromStart + 1);
                             node.right = mazeArray[col + 1, row];
-                            TraverveNodesDFS(mazeArray[col + 1, row], col + 1, row);
+                            TraverveRemainingNodesDFS(mazeArray[col + 1, row], col + 1, row);
                         }
                         //otherwise reached already visited node
                         else if (mazeArray[col + 1, row].specialVal != visitedPathValue)
-                            TraverveNodesDFS(mazeArray[col + 1, row], col + 1, row);
+                            TraverveRemainingNodesDFS(mazeArray[col + 1, row], col + 1, row);
                         break;
                     //go up
                     case 2:
@@ -352,11 +352,11 @@ namespace Mazes
                         {
                             mazeArray[col, row - 1] = new Node(col, row - 1, pathValue, node.lengthFromStart + 1);
                             node.up = mazeArray[col, row - 1];
-                            TraverveNodesDFS(mazeArray[col, row - 1], col, row - 1);
+                            TraverveRemainingNodesDFS(mazeArray[col, row - 1], col, row - 1);
                         }
                         //otherwise reached already visited node
                         else if (mazeArray[col, row - 1].specialVal != visitedPathValue)
-                            TraverveNodesDFS(mazeArray[col, row - 1], col, row - 1);
+                            TraverveRemainingNodesDFS(mazeArray[col, row - 1], col, row - 1);
                         break;
                     //go down
                     case 3:
@@ -367,11 +367,11 @@ namespace Mazes
                         {
                             mazeArray[col, row + 1] = new Node(col, row + 1, pathValue, node.lengthFromStart + 1);
                             node.down = mazeArray[col, row + 1];
-                            TraverveNodesDFS(mazeArray[col, row + 1], col, row + 1);
+                            TraverveRemainingNodesDFS(mazeArray[col, row + 1], col, row + 1);
                         }
                         //otherwise reached already visited node
                         else if (mazeArray[col, row + 1].specialVal != visitedPathValue)
-                            TraverveNodesDFS(mazeArray[col, row + 1], col, row + 1);
+                            TraverveRemainingNodesDFS(mazeArray[col, row + 1], col, row + 1);
                         break;
                     default:
                         break;
