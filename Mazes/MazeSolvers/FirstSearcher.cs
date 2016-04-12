@@ -31,48 +31,20 @@ namespace Mazes
         /// <param name="nextBestNodeList"></param>
         public void GetNodeSuccessors(Node currentNode, List<Node> nextBestNodeList)
         {
-            if (currentNode.left != null)
+            List<Node> nodesToCheck = new List<Node>();
+            nodesToCheck.InsertRange(nodesToCheck.Count, new Node[] { currentNode.left, currentNode.right, currentNode.up, currentNode.down });
+            foreach (Node node in nodesToCheck)
             {
-                currentNode.left.setWeight(end);
-                if (currentNode.left.specialVal != visitedNodeValue)
+                if (node != null)
                 {
-                    if(currentNode.left.specialVal != end.specialVal)
-                        currentNode.left.specialVal = visitedNodeValue;
-                    currentNode.left.prevNode = currentNode;
-                    nextBestNodeList.Add(currentNode.left);
-                }
-            }
-            if (currentNode.right != null)
-            {
-                currentNode.right.setWeight(end);
-                if (currentNode.right.specialVal != visitedNodeValue)
-                {
-                    if (currentNode.right.specialVal != end.specialVal)
-                        currentNode.right.specialVal = visitedNodeValue;
-                    currentNode.right.prevNode = currentNode;
-                    nextBestNodeList.Add(currentNode.right);
-                }
-            }
-            if (currentNode.up != null)
-            {
-                currentNode.up.setWeight(end);
-                if (currentNode.up.specialVal != visitedNodeValue)
-                {
-                    if (currentNode.up.specialVal != end.specialVal)
-                        currentNode.up.specialVal = visitedNodeValue;
-                    currentNode.up.prevNode = currentNode;
-                    nextBestNodeList.Add(currentNode.up);
-                }
-            }
-            if (currentNode.down != null)
-            {
-                currentNode.down.setWeight(end);
-                if (currentNode.down.specialVal != visitedNodeValue)
-                {
-                    if (currentNode.down.specialVal != end.specialVal)
-                        currentNode.down.specialVal = visitedNodeValue;
-                    currentNode.down.prevNode = currentNode;
-                    nextBestNodeList.Add(currentNode.down);
+                    node.setWeight(end);
+                    if (node.specialVal != visitedNodeValue)
+                    {
+                        if (node.specialVal != end.specialVal)
+                            node.specialVal = visitedNodeValue;
+                        node.prevNode = currentNode;
+                        nextBestNodeList.Add(node);
+                    }
                 }
             }
         }
