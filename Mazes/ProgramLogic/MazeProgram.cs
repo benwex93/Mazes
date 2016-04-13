@@ -8,7 +8,7 @@ namespace Mazes
         public static IDataClass data;
         static MazeDataBase MDB = new MazeDataBase();
         static GameDataBase GDB = new GameDataBase();
-        static CharVals mazeVals = new CharVals('S', 'E', '2', '0', '1');
+        static CharVals mazeVals = new CharVals('*', '#', '2', '0', '1');
         static string sizeStr = ConfigurationManager.AppSettings["maze size"];
         const int mazeSize = Int32.Parse(sizeStr);
         /*public MazeProgram()

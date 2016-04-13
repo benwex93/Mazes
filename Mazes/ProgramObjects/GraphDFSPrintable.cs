@@ -27,8 +27,8 @@ namespace Mazes
             this.mazeVals = mazeVals;
             visualMazeArray = new char[mazeSize * 2, mazeSize * 2];
             TraverveNodes(start, start.location.col * 2, start.location.row * 2);
-            visualMazeArray[start.location.col * 2, start.location.row * 2] = mazeVals.startValue;
-            visualMazeArray[end.location.col * 2, end.location.row * 2] = mazeVals.endValue;
+            visualMazeArray[start.location.col * 2, start.location.row * 2] = mazeVals.pathValue;
+            visualMazeArray[end.location.col * 2, end.location.row * 2] = mazeVals.pathValue;
             return GetStringFromArray();
         }
         /// <summary>
