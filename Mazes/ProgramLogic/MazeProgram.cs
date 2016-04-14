@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 
 namespace Mazes
 {
@@ -9,8 +8,7 @@ namespace Mazes
         static MazeDataBase MDB = new MazeDataBase();
         static GameDataBase GDB = new GameDataBase();
         static CharVals mazeVals = new CharVals('*', '#', '2', '0', '1');
-        static string sizeStr = ConfigurationManager.AppSettings["maze size"];
-        static int mazeSize = Int32.Parse(sizeStr);
+        const int mazeSize = 20;
         public static void GenerateMaze(string name, int generateType)
         {
             Maze maze = new Maze(name, mazeSize, mazeVals);
