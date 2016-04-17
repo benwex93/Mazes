@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3D559605-C566-4072-B3CE-5AFE1DDFDE93}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{293A1EDA-F2B1-44FC-8C76-6BBB359DE37C}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Mazes</RootNamespace>
-    <AssemblyName>Mazes</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>ConsoleApplication1</RootNamespace>
+    <AssemblyName>ConsoleApplication1</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -31,10 +33,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Mazes">
+      <HintPath>..\..\Mazes2\Mazes\bin\Debug\Mazes.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,28 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataBases\GameDataBase.cs" />
-    <Compile Include="DataBases\MazeDataBase.cs" />
-    <Compile Include="DataClasses\IDataClass.cs" />
-    <Compile Include="DataClasses\MazeDataClass.cs" />
-    <Compile Include="DataClasses\MultiplayerDataClass.cs" />
-    <Compile Include="DataClasses\NodeDataClass.cs" />
-    <Compile Include="DataClasses\SolutionDataClass.cs" />
-    <Compile Include="MazeMakers\DFSMazeMaker.cs" />
-    <Compile Include="MazeMakers\IMazeMakeable.cs" />
-    <Compile Include="MazeMakers\RandomMazeMaker.cs" />
-    <Compile Include="MazeSolvers\BestFSSolution.cs" />
-    <Compile Include="MazeSolvers\BreadthFSSolution.cs" />
-    <Compile Include="MazeSolvers\FirstSearcher.cs" />
-    <Compile Include="MazeSolvers\ISolution.cs" />
-    <Compile Include="ProgramLogic\MazeProgram.cs" />
-    <Compile Include="ProgramObjects\CharVals.cs" />
-    <Compile Include="ProgramObjects\Game.cs" />
-    <Compile Include="ProgramObjects\GraphDFSPrintable.cs" />
-    <Compile Include="ProgramObjects\Location.cs" />
-    <Compile Include="ProgramObjects\Maze.cs" />
-    <Compile Include="ProgramObjects\Node.cs" />
+    <Compile Include="Tester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
