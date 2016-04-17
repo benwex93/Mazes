@@ -8,10 +8,16 @@ namespace Mazes
         static MazeDataBase MDB = new MazeDataBase();
         static GameDataBase GDB = new GameDataBase();
         static CharVals mazeVals = new CharVals('*', '#', '2', '0', '1');
-        const int mazeSize = 20;
+        static int mazeHeight;
+        static int mazeLength;
+        public static void ConfigureDimensions(string name, int generateType)
+        {
+            mazeHeight = 20;
+            mazeLength = 20;
+        }
         public static void GenerateMaze(string name, int generateType)
         {
-            Maze maze = new Maze(name, mazeSize, mazeVals);
+            Maze maze = new Maze(name, mazeHeight, mazeLength, mazeVals);
             if (generateType == 0)
                 maze.CreateMaze(new RandomMazeMaker());
             else if (generateType == 1)
@@ -55,7 +61,7 @@ namespace Mazes
             Game game = GDB.RetrieveGame(name);
             if (game == null) // player 16
             {
-                game = new Game(name, mazeSize, mazeVals);
+                game = new Game(name, mazeHeight, mazeLength, mazeVals);
                 GDB.AddGame(game);
                 data = new MultiplayerDataClass(game.name, game.mazeOne.name,
                     new MazeDataClass(game.mazeOne.name, game.mazeOne.ToString(),

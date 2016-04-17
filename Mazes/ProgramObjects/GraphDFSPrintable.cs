@@ -11,7 +11,8 @@ namespace Mazes
         //class for printing graphs that are printable using dfs (i.e. acyclic)
         //placing it in a char array and then saving that char array as a string
         char[,] visualMazeArray;
-        int mazeSize;
+        int mazeHeight;
+        int mazeLength;
         CharVals mazeVals;
         /// <summary>
         /// gets printable graph's info
@@ -21,14 +22,16 @@ namespace Mazes
         /// <param name="mazeSize"></param>
         /// <param name="mazeVals"></param>
         /// <returns></returns>
-        public string GetString(Node start, Node end, int mazeSize, CharVals mazeVals)
+        public string GetString(Node start, Node end, int mazeHeight, int mazeLength, CharVals mazeVals)
         {
-            this.mazeSize = mazeSize;
+            this.mazeHeight = mazeHeight;
+            this.mazeLength = mazeLength;
             this.mazeVals = mazeVals;
-            visualMazeArray = new char[mazeSize * 2, mazeSize * 2];
+            visualMazeArray = new char[mazeLength * 2, mazeHeight * 2];
             TraverveNodes(start, start.location.col * 2, start.location.row * 2);
-            visualMazeArray[start.location.col * 2, start.location.row * 2] = mazeVals.pathValue;
-            visualMazeArray[end.location.col * 2, end.location.row * 2] = mazeVals.pathValue;
+            //turns start and end into normal path values
+            visualMazeArray[start.location.col * 2, start.location.row * 2] = mazeVals.startValue;
+            visualMazeArray[end.location.col * 2, end.location.row * 2] = mazeVals.endValue;
             return GetStringFromArray();
         }
         /// <summary>
@@ -38,9 +41,9 @@ namespace Mazes
         public string GetStringFromArray()
         {
             string mazeString = "";
-            for (int col = 0; col < mazeSize * 2; col++)
+            for (int col = 0; col < mazeHeight * 2; col++)
             {
-                for (int row = 0; row < mazeSize * 2; row++)
+                for (int row = 0; row < mazeLength * 2; row++)
                 {
                     //if wall
                     if (visualMazeArray[row, col] == '\0')
@@ -48,7 +51,7 @@ namespace Mazes
                     else
                         mazeString +=(visualMazeArray[row, col]);
                 }
-                //mazeString += "\n";
+                mazeString += "\n";
             }
             return mazeString;
         }

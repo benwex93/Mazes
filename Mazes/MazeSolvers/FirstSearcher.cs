@@ -8,7 +8,8 @@ namespace Mazes
 {
     public class FirstSearcher : ISolution
     {
-        int mazeSize;
+        int mazeHeight;
+        int mazeLength;
         protected char solvedPathValue;
         protected char visitedNodeValue;
         /// <summary>
@@ -18,7 +19,8 @@ namespace Mazes
         public void GetMazeInfo(Maze mazeToSolve)
         {
             this.name = mazeToSolve.name;
-            this.mazeSize = mazeToSolve.mazeSize;
+            this.mazeHeight = mazeToSolve.mazeHeight;
+            this.mazeLength = mazeToSolve.mazeLength;
             this.start = mazeToSolve.start;
             this.end = mazeToSolve.end;
             this.solvedPathValue = mazeToSolve.mazeVals.solValue;

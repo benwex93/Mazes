@@ -4,7 +4,7 @@ using System.Web.Script.Serialization;
 using System.IO;
 namespace Mazes
 {
-    class MazeDataBase
+    public class MazeDataBase
     {
         //stores a list of mazes and and solutions while the program is running
         static List<Maze> mazeList;

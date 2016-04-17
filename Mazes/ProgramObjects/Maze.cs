@@ -12,13 +12,15 @@ namespace Mazes
         public Node start { get; set; }
         public Node end { get; set; }
         public string name { get; set; }
-        public int mazeSize { get; set; }
+        public int mazeHeight { get; set; }
+        public int mazeLength { get; set; }
         public CharVals mazeVals { get; set; }
         public bool isSolved { get; set; }
-        public Maze(string name, int mazeSize, CharVals mazeVals)
+        public Maze(string name, int mazeHeight, int mazeLength, CharVals mazeVals)
         {
             this.name = name;
-            this.mazeSize = mazeSize;
+            this.mazeHeight = mazeHeight;
+            this.mazeLength = mazeLength;
             this.mazeVals = mazeVals;
         }
         /// <summary>
@@ -43,7 +45,7 @@ namespace Mazes
         /// <returns></returns>
         public override string ToString()
         {
-            return GetString(start, end, mazeSize, mazeVals);
+            return GetString(start, end, mazeHeight, mazeLength, mazeVals);
         }
         /// <summary>
         /// deeply copies a maze
@@ -51,7 +53,7 @@ namespace Mazes
         /// <returns>a maze clone</returns>
         public Maze Clone()
         {
-            Maze mazeClone = new Maze(this.name,this.mazeSize, this.mazeVals);
+            Maze mazeClone = new Maze(this.name, mazeHeight, mazeLength, this.mazeVals);
             mazeClone.start = this.start.Clone();
             CloneNodes(this.start, mazeClone.start);
             mazeClone.end = this.end.Clone();

@@ -20,10 +20,10 @@ namespace Mazes
         /// <param name="name"></param>
         /// <param name="mazeSize"></param>
         /// <param name="mazeVals"></param>
-        public Game(string name, int mazeSize, CharVals mazeVals)
+        public Game(string name, int mazeHeight, int mazeLength, CharVals mazeVals)
         {
             this.name = name;
-            mazeOne = new Maze(name + "player1", mazeSize, mazeVals);
+            mazeOne = new Maze(name + "player1", mazeHeight, mazeLength, mazeVals);
             mazeOne.CreateMaze(new DFSMazeMaker());
             mazeTwo = mazeOne.Clone();
             mazeTwo.name = name + "player2";

@@ -2,7 +2,7 @@
 
 namespace Mazes
 {
-    class GameDataBase
+    public class GameDataBase
     {
         //creates game list so that playes can meet up for a certain game
         static List<Game> gameList;

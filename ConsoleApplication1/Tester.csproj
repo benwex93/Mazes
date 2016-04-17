@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mazes">
-      <HintPath>..\..\Mazes2\Mazes\bin\Debug\Mazes.dll</HintPath>
+      <HintPath>..\Mazes\bin\Debug\Mazes.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

@@ -14,29 +14,33 @@ namespace Mazes
         // as the end. It then branches out from the main path, node by node performing
         //a dfs search on each node thus retaining the acyclic nature of the graph
         static Random randomNumberGenerator = new Random();
-        int mazeSize;
+        int mazeHeight;
+        int mazeLength;
         Node[,] mazeArray;
         char pathValue;
         char mainPathValue;
         char visitedPathValue;
         public void CreateMaze(Maze mazeToMake)
         {
-            this.mazeSize = mazeToMake.mazeSize;
+            this.mazeHeight = mazeToMake.mazeHeight;
+            this.mazeLength = mazeToMake.mazeLength;
             this.pathValue = mazeToMake.mazeVals.pathValue;
-            mazeArray = new Node[mazeSize, mazeSize];
+            mazeArray = new Node[mazeLength, mazeHeight];
             CreateStart(mazeToMake);
+            MakeStartEndPath(mazeToMake.start, mazeToMake.start.location.col, mazeToMake.start.location.row);
             CreateEnd(mazeToMake);
             mainPathValue = mazeToMake.mazeVals.GetRandomUnusedChar();
             visitedPathValue = mazeToMake.mazeVals.GetRandomUnusedChar();
             RandomizeRemainingNodes();
             TraverveRemainingNodesDFS(mazeToMake.start, mazeToMake.start.location.col, mazeToMake.start.location.row);
+            CreateEnd(mazeToMake);
             ResetStartEndValues(mazeToMake);
         }
         public void CreateStart(Maze mazeToMake)
         {
             //randomNumberGenerator
-            int col = randomNumberGenerator.Next(0, mazeToMake.mazeSize);
-            int row = randomNumberGenerator.Next(0, mazeToMake.mazeSize);
+            int col = randomNumberGenerator.Next(0, mazeToMake.mazeLength);
+            int row = randomNumberGenerator.Next(0, mazeToMake.mazeHeight);
 
             mazeToMake.start = new Node(col, row, pathValue, 0);
             mazeToMake.start.specialVal = mazeToMake.mazeVals.startValue;
@@ -44,12 +48,11 @@ namespace Mazes
         }
         public void CreateEnd(Maze mazeToMake)
         {
-            MakeStartEndPath(mazeToMake.start, mazeToMake.start.location.col, mazeToMake.start.location.row);
             int greatestLengthFromStart = 0;
             Node end = null;
-            for (int col = 0; col < mazeSize; col++)
+            for (int col = 0; col < mazeLength; col++)
             {
-                for (int row = 0; row < mazeSize; row++)
+                for (int row = 0; row < mazeHeight; row++)
                 {
                     if (mazeArray[col, row] != null)
                     {
@@ -87,7 +90,7 @@ namespace Mazes
                         else if (mazeArray[col - 1, row] == null)
                         {
                             //end after making path of size mazesize*mazesize/2
-                            if (node.lengthFromStart >= mazeSize)
+                            if (node.lengthFromStart >= (mazeHeight + mazeLength / 2))
                                 return true;
                             else
                             {
@@ -104,12 +107,12 @@ namespace Mazes
                         break;
                     //go right
                     case 1:
-                        if (col + 1 >= mazeSize) //if out of bounds
+                        if (col + 1 >= mazeLength) //if out of bounds
                             node.right = null;
                         //if in bounds can safely run check on maze to see if found available node
                         else if (mazeArray[col + 1, row] == null)
                         {
-                            if (node.lengthFromStart >= mazeSize)
+                            if (node.lengthFromStart >= (mazeHeight + mazeLength / 2))
                                 return true;
                             else
                             {
@@ -131,7 +134,7 @@ namespace Mazes
                         //if in bounds can safely run check on maze to see if found available node
                         else if (mazeArray[col, row - 1] == null)
                         {
-                            if (node.lengthFromStart >= mazeSize)
+                            if (node.lengthFromStart >= (mazeHeight + mazeLength / 2))
                                 return true;
                             else
                             {
@@ -148,12 +151,12 @@ namespace Mazes
                         break;
                     //go down
                     case 3:
-                        if (row + 1 >= mazeSize) //if out of bounds
+                        if (row + 1 >= mazeHeight) //if out of bounds
                             node.down = null;
                         //if in bounds can safely run check on maze to see if found available node
                         else if (mazeArray[col, row + 1] == null)
                         {
-                            if (node.lengthFromStart >= mazeSize)
+                            if (node.lengthFromStart >= (mazeHeight + mazeLength / 2))
                                 return true;
                             else
                             {
@@ -182,9 +185,9 @@ namespace Mazes
         public void RandomizeRemainingNodes()
         {
             Node nodeToBranchOut;
-            for (int col = 0; col < mazeSize; col++)
+            for (int col = 0; col < mazeLength; col++)
             {
-                for (int row = 0; row < mazeSize; row++)
+                for (int row = 0; row < mazeHeight; row++)
                 {
                     if (mazeArray[col, row] != null)
                     {
@@ -227,7 +230,7 @@ namespace Mazes
                                         break;
                                     //go right
                                     case 1:
-                                        if (nodeToBranchOut.location.col + 1 >= mazeSize)  { //if out of bounds
+                                        if (nodeToBranchOut.location.col + 1 >= mazeLength)  { //if out of bounds
                                             nodeToBranchOut.right = null;
                                             directionsList.RemoveAt(randomIndex);
                                         }
@@ -267,7 +270,7 @@ namespace Mazes
                                         break;
                                     //go down
                                     case 3:
-                                        if (nodeToBranchOut.location.row + 1 >= mazeSize) {  //if out of bounds
+                                        if (nodeToBranchOut.location.row + 1 >= mazeHeight) {  //if out of bounds
                                             nodeToBranchOut.down = null;
                                             directionsList.RemoveAt(randomIndex);
                                         }
@@ -330,7 +333,7 @@ namespace Mazes
                         break;
                     //go right
                     case 1:
-                        if (col + 1 >= mazeSize) //if out of bounds
+                        if (col + 1 >= mazeLength) //if out of bounds
                             node.right = null;
                         //if in bounds can safely run check on maze to see if found available node
                         else if (mazeArray[col + 1, row] == null)
@@ -360,7 +363,7 @@ namespace Mazes
                         break;
                     //go down
                     case 3:
-                        if (row + 1 >= mazeSize) //if out of bounds
+                        if (row + 1 >= mazeHeight) //if out of bounds
                             node.down = null;
                         //if in bounds can safely run check on maze to see if found available node
                         else if (mazeArray[col, row + 1] == null)

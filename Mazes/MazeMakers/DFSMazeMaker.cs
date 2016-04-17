@@ -11,7 +11,8 @@ namespace Mazes
         //in a one way acyclic graph in a dFS manner
         Node[,] mazeArray;
         static Random randomNumberGenerator = new Random();
-        int mazeSize;
+        int mazeHeight;
+        int mazeLength;
         char pathValue;
         /// <summary>
         /// algorithm that saves all details of the maze that it will need to create it and then creates it
@@ -19,9 +20,10 @@ namespace Mazes
         /// <param name="mazeToMake"></param>
         public void CreateMaze(Maze mazeToMake)
         {
-            this.mazeSize = mazeToMake.mazeSize;
+            this.mazeHeight = mazeToMake.mazeHeight;
+            this.mazeLength = mazeToMake.mazeLength;
             this.pathValue = mazeToMake.mazeVals.pathValue;
-            mazeArray = new Node[mazeSize, mazeSize];
+            mazeArray = new Node[mazeLength, mazeHeight];
             CreateStart(mazeToMake);
             TraverveNodes(mazeToMake.start, mazeToMake.start.location.col, mazeToMake.start.location.row);
             CreateEnd(mazeToMake);
@@ -33,8 +35,8 @@ namespace Mazes
         public void CreateStart(Maze mazeToMake)
         {
             //randomNumberGenerator
-            int col = randomNumberGenerator.Next(0, mazeToMake.mazeSize);
-            int row = randomNumberGenerator.Next(0, mazeToMake.mazeSize);
+            int col = randomNumberGenerator.Next(0, mazeToMake.mazeLength);
+            int row = randomNumberGenerator.Next(0, mazeToMake.mazeHeight);
 
             mazeToMake.start = new Node(col, row, mazeToMake.mazeVals.pathValue, 0);
             mazeToMake.start.specialVal = mazeToMake.mazeVals.startValue;
@@ -48,9 +50,9 @@ namespace Mazes
         {
             int greatestLengthFromStart = 0;
             Node end = null;
-            for (int col = 0; col < mazeSize; col++)
+            for (int col = 0; col < mazeLength; col++)
             {
-                for (int row = 0; row < mazeSize; row++)
+                for (int row = 0; row < mazeHeight; row++)
                 {
                     if (greatestLengthFromStart < mazeArray[col, row].lengthFromStart)
                     {
@@ -99,7 +101,7 @@ namespace Mazes
                         break;
                     //go right
                     case 1:
-                        if (col + 1 >= mazeSize) //if out of bounds
+                        if (col + 1 >= mazeLength) //if out of bounds
                             node.right = null;
                         //if in bounds can safely run check on maze to see if found available node
                         else if (mazeArray[col + 1, row] == null)
@@ -127,7 +129,7 @@ namespace Mazes
                         break;
                     //go down
                     case 3:
-                        if (row + 1 >= mazeSize) //if out of bounds
+                        if (row + 1 >= mazeHeight) //if out of bounds
                             node.down = null;
                         //if in bounds can safely run check on maze to see if found available node
                         else if (mazeArray[col, row + 1] == null)
