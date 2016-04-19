@@ -9,7 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{AC3645D9-2388-4DA0-BCBD-AD6D2B7F8974}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tester", "ConsoleApplication1\Tester.csproj", "{293A1EDA-F2B1-44FC-8C76-6BBB359DE37C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLLTester", "ConsoleApplication1\DLLTester.csproj", "{293A1EDA-F2B1-44FC-8C76-6BBB359DE37C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientGui", "ClientGui\ClientGui.csproj", "{F9A579BA-CEA7-4952-8320-252FAFB7E132}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{293A1EDA-F2B1-44FC-8C76-6BBB359DE37C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{293A1EDA-F2B1-44FC-8C76-6BBB359DE37C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{293A1EDA-F2B1-44FC-8C76-6BBB359DE37C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9A579BA-CEA7-4952-8320-252FAFB7E132}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9A579BA-CEA7-4952-8320-252FAFB7E132}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9A579BA-CEA7-4952-8320-252FAFB7E132}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9A579BA-CEA7-4952-8320-252FAFB7E132}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
