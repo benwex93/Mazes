@@ -115,7 +115,9 @@ namespace ClientGui
         }
         private void Settings_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Settings.Visibility = Visibility.Hidden;
+            SettingsWindow settingsWindow = new SettingsWindow();
+            settingsWindow.ShowDialog();
+
         }
     }
 }
