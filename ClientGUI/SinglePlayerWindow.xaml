@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClientGui"
         mc:Ignorable="d"
-        Title="SinglePlayerWindow" Height="Auto" Width="Auto" Background="Black">
-    <Grid>
-        <StackPanel Background="Black" Name ="windowBackground" HorizontalAlignment="Left" Height="Auto" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto"/>
-    </Grid>
+        Title="SinglePlayerWindow" Height="800" Width="550" Background="Black" HorizontalAlignment="Center" VerticalAlignment="Stretch" KeyDown="Window_KeyDown">
+    <StackPanel Background="Black" Name ="windowBackground" HorizontalAlignment="Center" Height="Auto" Margin="0,0,0,0" VerticalAlignment="Stretch" Width="Auto">
+        <StackPanel Orientation ="Horizontal" Height="Auto" HorizontalAlignment="Center" VerticalAlignment="Stretch" Width="Auto">
+            <Button x:Name="hint" Content="Hint!" Height="40" Margin="20" Width="80" HorizontalAlignment="Center" Click="hint_Click"/>
+            <Image x:Name="image" Height="100" Width="100" Source="Pictures/CalFinal.png"/>
+            <Button x:Name="back" Content="Go Back" Height="40" Margin="20" Width="80" HorizontalAlignment="Center" Click="back_Click"/>
+        </StackPanel>
+    </StackPanel>
 </Window>

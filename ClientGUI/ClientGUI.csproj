@@ -149,6 +149,30 @@
   <ItemGroup>
     <Resource Include="Pictures\greensquare.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\Player-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\Player-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\CalFinal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\BenjyFinal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\Cal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\Benjy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\yellowsquare.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Multiplayer.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

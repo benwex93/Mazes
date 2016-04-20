@@ -5,12 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClientGui"
         mc:Ignorable="d"
-        Title="MultiplayerWindow" Height="300" Width="300">
-    <Grid>
-        <DockPanel HorizontalAlignment="Left" Height="Auto" LastChildFill="False" VerticalAlignment="Top" Width="Auto">
-            <StackPanel Name ="Player1" Height="Auto" VerticalAlignment="Top" Width="Auto"/>
-            <StackPanel Height="Auto" VerticalAlignment="Center" Width="Auto"/>
-            <StackPanel Name ="Player2" Height="Auto" VerticalAlignment="Top" Width="Auto"/>
-        </DockPanel>
-    </Grid>
+        Title="MultiplayerWindow" Height="800" Width="1100" Background="Black" KeyDown="Window_KeyDown">
+    <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
+        <StackPanel Height="Auto" Width="Auto" Name ="Player1">
+            <StackPanel Orientation ="Horizontal"  Height="Auto" Width="Auto">
+                <Image Height="100" Source="Pictures/Player-1.png"/>
+                <Image Height="100" Source="Pictures/CalFinal.png"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Height="Auto" VerticalAlignment="Center" Width="Auto" HorizontalAlignment="Center">
+            <Button x:Name="hint" Content="Hint!" Height="40" Margin="20" Width="80" HorizontalAlignment="Center" Click="hint_Click"/>
+            <Button x:Name="back" Content="Go Back" Height="40" Margin="20" Width="80" HorizontalAlignment="Center" Click="back_Click"/>
+        </StackPanel>
+        <StackPanel Height="Auto" Width="Auto" Name ="Player2">
+            <StackPanel Orientation ="Horizontal"  Height="Auto" Width="Auto">
+                <Image Height="100" Source="Pictures/Player-1.png"/>
+                <Image Height="100" Source="Pictures/BenjyFinal.png"/>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
 </Window>

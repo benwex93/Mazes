@@ -14,8 +14,10 @@ namespace ClientGui
         public int startCol { get; set; }
         public int endRow { get; set; }
         public int endCol { get; set; }
+        public int currentRow { get; set; }
+        public int currentCol { get; set; }
         public string mazeString { get; set; }
-        public MazeInfo(int height, int length, int startRow, int startCol, int endRow, int endCol, string mazeString)
+        public MazeInfo(int height, int length, int startRow, int startCol, int endRow, int endCol, int currentRow, int currentCol, string mazeString)
         {
             this.height = height;
             this.length = length;
@@ -23,6 +25,8 @@ namespace ClientGui
             this.startCol = startCol;
             this.endRow = endRow;
             this.endCol = endCol;
+            this.currentCol = currentCol;
+            this.currentRow = currentRow;
             this.mazeString = mazeString;
         }
     }
