@@ -5,9 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClientGui"
         mc:Ignorable="d"
-        Title="SinglePlayerWindow" Height="300" Width="300">
+        Title="SinglePlayerWindow" Height="Auto" Width="Auto" Background="Black">
     <Grid>
-        <Grid Name ="Maze" HorizontalAlignment="Center" Height="Auto" Margin="0,0,0,0" VerticalAlignment="Center" Width="Auto"/>
-
+        <StackPanel Background="Black" Name ="windowBackground" HorizontalAlignment="Left" Height="Auto" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto"/>
     </Grid>
 </Window>

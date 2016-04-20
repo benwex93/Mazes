@@ -8,12 +8,13 @@ namespace Mazes
         static MazeDataBase MDB = new MazeDataBase();
         static GameDataBase GDB = new GameDataBase();
         static CharVals mazeVals = new CharVals('*', '#', '2', '0', '1');
-        static int mazeHeight;
-        static int mazeLength;
+        //values set here for testing
+        static int mazeHeight = 20;
+        static int mazeLength = 25;
         public static void ConfigureDimensions(string name, int generateType)
         {
             mazeHeight = 20;
-            mazeLength = 20;
+            mazeLength = 25;
         }
         public static void GenerateMaze(string name, int generateType)
         {

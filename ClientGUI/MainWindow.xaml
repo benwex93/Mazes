@@ -7,27 +7,27 @@
         mc:Ignorable="d"
         Title="Welcome To Mazes" Height="421" Width="568">
     <StackPanel Name="MainPanel" HorizontalAlignment="Stretch" Height="Auto" Margin="0,10,0,0" VerticalAlignment="Stretch" Width="Auto" Background="Black">
-        <Image x:Name="image" Height="100" Source="MAZES.png"/>
+        <Image x:Name="image" Height="100" Source="Pictures/MAZES.png"/>
         <Grid Height="100">
             <Canvas HorizontalAlignment="Center" Height="100" Margin="0,0,0,0" VerticalAlignment="Center" Width="100">
-                <Image x:Name="CalRunning1" Height="100" Width="100" Source="FinalRunner1.png" />
-                <Image x:Name="CalRunning2" Height="100" Width="100" Source="FinalRunner2.png" Visibility="Hidden"/>
-                <Image x:Name="CalRunning3" Height="100" Width="100" Source="FinalRunner3.png" Visibility="Hidden"/>
-                <Image x:Name="CalRunning4" Height="100" Width="100" Source="FinalRunner2.png" Visibility="Hidden"/>
+                <Image x:Name="CalRunning1" Height="100" Width="100" Source="Pictures/FinalRunner1.png" />
+                <Image x:Name="CalRunning2" Height="100" Width="100" Source="Pictures/FinalRunner2.png" Visibility="Hidden"/>
+                <Image x:Name="CalRunning3" Height="100" Width="100" Source="Pictures/FinalRunner3.png" Visibility="Hidden"/>
+                <Image x:Name="CalRunning4" Height="100" Width="100" Source="Pictures/FinalRunner2.png" Visibility="Hidden"/>
             </Canvas>
         </Grid>
         <StackPanel Height="150">
             <Canvas HorizontalAlignment="Center" Height="51" Margin="0,0,0,0" VerticalAlignment="Center" Width="284">
-                <Image x:Name="SinglePlayer" Height="51" Source="Single-Player.png" Canvas.Left="60" Width="224" IsMouseDirectlyOverChanged="SinglePlayer_IsMouseDirectlyOverChanged" MouseDown="SinglePlayer_MouseDown"/>
-                <Image x:Name="Select1" Height="51" Width="60" RenderTransformOrigin="0.49,-0.542" Source="Select.png" Visibility="Hidden"/>
+                <Image x:Name="SinglePlayer" Height="51" Source="Pictures/Single-Player.png" Canvas.Left="60" Width="224" IsMouseDirectlyOverChanged="SinglePlayer_IsMouseDirectlyOverChanged" MouseDown="SinglePlayer_MouseDown"/>
+                <Image x:Name="Select1" Height="51" Width="60" RenderTransformOrigin="0.49,-0.542" Source="Pictures/Select.png" Visibility="Hidden"/>
             </Canvas>
             <Canvas HorizontalAlignment="Center" Height="51" Margin="0,0,0,0" VerticalAlignment="Center" Width="284">
-                <Image x:Name="Multiplayer" Height="51" Source="Multiplayer.png" Canvas.Left="60" Width="224" IsMouseDirectlyOverChanged="Multiplayer_IsMouseDirectlyOverChanged" MouseDown="Multiplayer_MouseDown"/>
-                <Image x:Name="Select2" Height="51" Width="60" RenderTransformOrigin="0.49,-0.542" Source="Select.png" Visibility="Hidden"/>
+                <Image x:Name="Multiplayer" Height="51" Source="Pictures/Multiplayer.png" Canvas.Left="60" Width="224" IsMouseDirectlyOverChanged="Multiplayer_IsMouseDirectlyOverChanged" MouseDown="Multiplayer_MouseDown"/>
+                <Image x:Name="Select2" Height="51" Width="60" RenderTransformOrigin="0.49,-0.542" Source="Pictures/Select.png" Visibility="Hidden"/>
             </Canvas>
             <Canvas HorizontalAlignment="Center" Height="51" Margin="0,0,0,0" VerticalAlignment="Center" Width="284">
-                <Image x:Name="Settings" Height="51" Source="Settings.png" Canvas.Left="60" Width="224" IsMouseDirectlyOverChanged="Settings_IsMouseDirectlyOverChanged" MouseDown="Settings_MouseDown"/>
-                <Image x:Name="Select3" Height="51" Width="60" RenderTransformOrigin="0.49,-0.542" Source="Select.png" Visibility="Hidden"/>
+                <Image x:Name="Settings" Height="51" Source="Pictures/Settings.png" Canvas.Left="60" Width="224" IsMouseDirectlyOverChanged="Settings_IsMouseDirectlyOverChanged" MouseDown="Settings_MouseDown"/>
+                <Image x:Name="Select3" Height="51" Width="60" RenderTransformOrigin="0.49,-0.542" Source="Pictures/Select.png" Visibility="Hidden"/>
             </Canvas>
         </StackPanel>
     </StackPanel>

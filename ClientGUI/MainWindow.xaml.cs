@@ -107,11 +107,13 @@ namespace ClientGui
 
         private void SinglePlayer_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            SinglePlayer.Visibility = Visibility.Hidden;
+            SinglePlayerWindow SPW = new SinglePlayerWindow();
+            SPW.Show();
         }
         private void Multiplayer_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Multiplayer.Visibility = Visibility.Hidden;
+            MultiplayerWindow MW = new MultiplayerWindow();
+            MW.Show();
         }
         private void Settings_MouseDown(object sender, MouseButtonEventArgs e)
         {

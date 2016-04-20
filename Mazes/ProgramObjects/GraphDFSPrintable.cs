@@ -30,8 +30,8 @@ namespace Mazes
             visualMazeArray = new char[mazeLength * 2, mazeHeight * 2];
             TraverveNodes(start, start.location.col * 2, start.location.row * 2);
             //turns start and end into normal path values
-            visualMazeArray[start.location.col * 2, start.location.row * 2] = mazeVals.startValue;
-            visualMazeArray[end.location.col * 2, end.location.row * 2] = mazeVals.endValue;
+            visualMazeArray[start.location.col * 2, start.location.row * 2] = mazeVals.pathValue;
+            visualMazeArray[end.location.col * 2, end.location.row * 2] = mazeVals.pathValue;
             return GetStringFromArray();
         }
         /// <summary>
@@ -51,7 +51,7 @@ namespace Mazes
                     else
                         mazeString +=(visualMazeArray[row, col]);
                 }
-                mazeString += "\n";
+               // mazeString += "\n";
             }
             return mazeString;
         }

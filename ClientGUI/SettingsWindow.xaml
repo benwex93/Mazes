@@ -8,7 +8,7 @@
         Title="Settings Window" Height="375.37" Width="333.99">
     <Grid Background="Black">
         <StackPanel HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch">
-            <Image x:Name="image" Height="100" Source="Settings.png"/>
+            <Image x:Name="image" Height="100" Source="Pictures/Settings.png"/>
             <TextBox x:Name="IPAddress" Height="40" TextWrapping="Wrap" Text="IP Address" VerticalAlignment="Center" FontSize="26.667" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="20" GotFocus="IPAddress_GotFocus"/>
             <TextBox x:Name="PortNumber" Height="40" TextWrapping="Wrap" Text="Port Number" Margin="20" FontSize="26.667" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GotFocus="PortNumber_GotFocus" />
             <Button x:Name="OKbutton" Content="OK" Margin="60,20,60,30" FontSize="26.667" Click="OKbutton_Click"/>
