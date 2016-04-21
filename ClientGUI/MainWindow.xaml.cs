@@ -21,11 +21,13 @@ namespace ClientGui
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MediaPlayer player;
         public MainWindow()
         {
             InitializeComponent();
             InitializeBackgroundTimer();
             InitializeRunningAnimationTimer();
+            InitializeMusic();
         }
         void InitializeBackgroundTimer()
         {
@@ -40,6 +42,18 @@ namespace ClientGui
             timer.Interval = TimeSpan.FromMilliseconds(100);
             timer.Tick += timerChangeRunner;
             timer.Start();
+        }
+        void InitializeMusic()
+        {
+            player = new MediaPlayer();
+            player.Open(new Uri("../../Music/Tetris.mp3", UriKind.Relative));
+            player.MediaEnded += new EventHandler(Media_Ended);
+            player.Play();
+        }
+        private void Media_Ended(object sender, EventArgs e)
+        {
+            player.Position = TimeSpan.Zero;
+            player.Play();
         }
         void timerBackgroundChange(object sender, EventArgs e)
         {
@@ -107,19 +121,21 @@ namespace ClientGui
 
         private void SinglePlayer_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            player.Pause();
             SinglePlayerWindow SPW = new SinglePlayerWindow();
             SPW.Show();
         }
         private void Multiplayer_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            player.Pause();
             MultiplayerWindow MW = new MultiplayerWindow();
             MW.Show();
         }
         private void Settings_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            player.Pause();
             SettingsWindow settingsWindow = new SettingsWindow();
             settingsWindow.ShowDialog();
-
         }
     }
 }

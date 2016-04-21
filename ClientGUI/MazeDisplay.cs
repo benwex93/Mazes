@@ -16,6 +16,7 @@ namespace ClientGui
         public Grid grid;
         public Image playerImage;
         public Image hintImage;
+        public Image endImage;
         public MazeDisplay(MazeInfo mazeInfo)
         {
             this.mazeInfo = mazeInfo;
@@ -60,6 +61,7 @@ namespace ClientGui
             }
             PlacePlayer(isFirstPlayer, isSecondPlayer);
             InitializeHintImage();
+            InitializeEndImage();
             return grid;
         }
         public void PlacePlayer(bool isFirstPlayer, bool isSecondPlayer)
@@ -119,6 +121,16 @@ namespace ClientGui
             hintImage.Visibility = Visibility.Visible;
             Grid.SetColumn(hintImage, row);
             Grid.SetRow(hintImage, col);
+        }
+        public void InitializeEndImage()
+        {
+            endImage = new Image();
+            endImage.Height = 12;
+            endImage.Width = 12;
+            endImage.Source = new BitmapImage(new Uri(@"/Pictures/redsquare.png", UriKind.Relative));
+            Grid.SetColumn(endImage, mazeInfo.endRow);
+            Grid.SetRow(endImage, mazeInfo.endCol);
+            grid.Children.Add(endImage);
         }
     }
 }

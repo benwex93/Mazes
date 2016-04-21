@@ -20,11 +20,25 @@ namespace ClientGui
     public partial class SinglePlayerWindow : Window
     {
         MazeDisplay mazeDisplay;
+        private MediaPlayer player;
         public SinglePlayerWindow()
         {
             InitializeComponent();
+            InitializeMusic();
             GetMazeInfo();
             AddGrid();
+        }
+        public void InitializeMusic()
+        {
+            player = new MediaPlayer();
+            player.Open(new Uri("../../Music/PenguinWars.mp3", UriKind.Relative));
+            player.MediaEnded += new EventHandler(Media_Ended);
+            player.Play();
+        }
+        private void Media_Ended(object sender, EventArgs e)
+        {
+            player.Position = TimeSpan.Zero;
+            player.Play();
         }
         /// <summary>
         /// gets maze from server
@@ -42,6 +56,7 @@ namespace ClientGui
         private void back_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            player.Stop();
         }
 
         private void hint_Click(object sender, RoutedEventArgs e)

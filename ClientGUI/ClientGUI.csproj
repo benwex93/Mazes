@@ -171,7 +171,9 @@
     <Resource Include="Pictures\yellowsquare.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Multiplayer.png" />
+    <Content Include="Music\PenguinWars.mp3" />
+    <Content Include="Music\Tetris.mp3" />
+    <Resource Include="Pictures\redsquare.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
