@@ -7,7 +7,9 @@ using System.Threading;
 namespace Server
 {//
     /// <summary>
-    /// /ddd/
+    /// A class that handles a specific client's requests. It also handles
+    /// the event signifying when the reply for this request is ready to be
+    /// sent back, and it sends the reply back to the client.
     /// </summary>
 	public class ClientHandler
 	{
@@ -22,6 +24,14 @@ namespace Server
 			tHandler.ReplyReady += new TaskHandler.ReplyReadyHandler (this.ReplyReady);
 		}
 
+        /// <summary>
+        /// A function to be called when a reply is ready to be sent back to
+        /// the client. It handles the event ReplyReady.
+        /// </summary>
+        /// <param name="source"> The object that triggered the event</param>
+        /// <param name="info">An instance of FinishedTaskEventArgs,
+        /// which inherits from EventArgs, and contains the string
+        /// to send back to the client</param>
 		public void ReplyReady(object source, FinishedTaskEventArgs info)
 		{	
 			TaskHandler handler = (TaskHandler)source;
@@ -33,6 +43,12 @@ namespace Server
 			}
 		}
 
+        /// <summary>
+        /// Receives requests from the client and sends them to the TaskHandler,
+        /// so that the requested task is carried out.
+        /// </summary>
+        /// <param name="State">this parameter is not used in the function.
+        /// The Thread class, which calls this function, requires this parameter</param>
 		public void handle(Object State)
         {
 			while (true) {
