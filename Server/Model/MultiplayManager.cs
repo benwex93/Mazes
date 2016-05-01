@@ -45,9 +45,6 @@ namespace Server
 			}
 			pending_requests.Remove (first_Request);
 			pending_requests.Remove (task);
-
-			//first_Request.Finished (first_Request, first_Request.Get_Task_Info ().GetJson ());
-			//task.Finished (task, task.Get_Task_Info ().GetJson ());
 		}
 
 		public void PlayRequest (Task task)
@@ -87,7 +84,6 @@ namespace Server
 				}
 			}
 			if (args != null) {
-				Console.WriteLine ("not null.");
 				EndGame (this, args);
 			}
 		}
