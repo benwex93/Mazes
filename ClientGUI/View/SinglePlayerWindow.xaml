@@ -9,7 +9,7 @@
     <StackPanel Background="Black" Name ="windowBackground" HorizontalAlignment="Center" Height="Auto" Margin="0,0,0,0" VerticalAlignment="Stretch" Width="Auto">
         <StackPanel Orientation ="Horizontal" Height="Auto" HorizontalAlignment="Center" VerticalAlignment="Stretch" Width="Auto">
             <Button x:Name="hint" Content="Hint!" Height="40" Margin="20" Width="80" HorizontalAlignment="Center" Click="hint_Click"/>
-            <Image x:Name="image" Height="100" Width="100" Source="Pictures/CalFinal.png"/>
+            <Image x:Name="image" Height="100" Width="100" Source="../Pictures/CalFinal.png"/>
             <Button x:Name="back" Content="Go Back" Height="40" Margin="20" Width="80" HorizontalAlignment="Center" Click="back_Click"/>
         </StackPanel>
     </StackPanel>

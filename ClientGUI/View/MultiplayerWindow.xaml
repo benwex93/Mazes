@@ -9,8 +9,8 @@
     <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
         <StackPanel Height="Auto" Width="Auto" Name ="Player1">
             <StackPanel Orientation ="Horizontal"  Height="Auto" Width="Auto">
-                <Image Height="100" Source="Pictures/Player-1.png"/>
-                <Image Height="100" Source="Pictures/CalFinal.png"/>
+                <Image Height="100" Source="../Pictures/Player-1.png"/>
+                <Image Height="100" Source="../Pictures/CalFinal.png"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Height="Auto" VerticalAlignment="Center" Width="Auto" HorizontalAlignment="Center">
@@ -19,8 +19,8 @@
         </StackPanel>
         <StackPanel Height="Auto" Width="Auto" Name ="Player2">
             <StackPanel Orientation ="Horizontal"  Height="Auto" Width="Auto">
-                <Image Height="100" Source="Pictures/Player-1.png"/>
-                <Image Height="100" Source="Pictures/BenjyFinal.png"/>
+                <Image Height="100" Source="../Pictures/Player-2.png"/>
+                <Image Height="100" Source="../Pictures/BenjyFinal.png"/>
             </StackPanel>
         </StackPanel>
     </StackPanel>
