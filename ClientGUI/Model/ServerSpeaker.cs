@@ -14,5 +14,10 @@ namespace ClientGui
         {
             configs = info;
         }
+
+        public void SetInfo(SettingsInfo info)
+        {
+            configs = info;
+        }
     }
 }

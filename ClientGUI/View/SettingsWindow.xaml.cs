@@ -23,7 +23,7 @@ namespace ClientGui
         {
             InitializeComponent();
         }
-        private void IPAddress_GotFocus(object sender, RoutedEventArgs e)
+        /*private void IPAddress_GotFocus(object sender, RoutedEventArgs e)
         {
             if (IPAddress.Text == "IP Address")
                 IPAddress.Text = "";
@@ -37,7 +37,7 @@ namespace ClientGui
                 PortNumber.Text = "";
             if (IPAddress.Text.Length == 0)
                 IPAddress.Text = "IP Address";
-        }
+        } */
         /// <summary>
         /// Gets ip address and port number then closes
         /// </summary>

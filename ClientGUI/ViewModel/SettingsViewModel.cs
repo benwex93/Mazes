@@ -25,6 +25,7 @@ namespace ClientGui
                 if (IsValidIP(value))
                 {
                     info.ip = value;
+                    speaker.SetInfo(info);
                     WriteToFile();
                 }
             }
@@ -37,6 +38,7 @@ namespace ClientGui
                 if (IsDigitsOnly(value))
                 {
                     info.port = Int32.Parse(value);
+                    speaker.SetInfo(info);
                     WriteToFile();
                 }
             }

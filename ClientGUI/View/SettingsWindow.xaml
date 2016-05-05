@@ -7,13 +7,13 @@
         mc:Ignorable="d"
         Title="Settings Window" Height="375.37" Width="333.99">
     <Window.Resources>
-        <local:SettingsViewModel x:Key="settobj" txtIPAddress="" txtPort="" />
+        <local:SettingsViewModel x:Key="settobj" />
     </Window.Resources>
     <Grid Background="Black">
         <StackPanel HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch">
             <Image x:Name="image" Height="100" Source="../Pictures/Settings.png"/>
-            <TextBox x:Name="IPAddress" Height="40" TextWrapping="Wrap" Text="{Binding txtIPAddress, Source={StaticResource settobj}}" VerticalAlignment="Center" FontSize="26.667" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="20" GotFocus="IPAddress_GotFocus" SpellCheck.IsEnabled="True"/>
-            <TextBox x:Name="PortNumber" Height="40" TextWrapping="Wrap" Text="{Binding txtPort, Source={StaticResource settobj}}" Margin="20" FontSize="26.667" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GotFocus="PortNumber_GotFocus" />
+            <TextBox x:Name="IPAddress" Height="40" TextWrapping="Wrap" Text="{Binding txtIPAddress, Source={StaticResource settobj}}" VerticalAlignment="Center" FontSize="26.667" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="20" SpellCheck.IsEnabled="True"/>
+            <TextBox x:Name="PortNumber" Height="40" TextWrapping="Wrap" Text="{Binding txtPort, Source={StaticResource settobj}}" Margin="20" FontSize="26.667" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
             <Button x:Name="OKbutton" Content="OK" Margin="60,20,60,30" FontSize="26.667" Click="OKbutton_Click"/>
         </StackPanel>
     </Grid>
