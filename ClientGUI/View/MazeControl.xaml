@@ -6,15 +6,18 @@
              xmlns:local="clr-namespace:ClientGui.View"
              xmlns:viewmodel="clr-namespace:ClientGui.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="550">
+             Focusable="True"
+             IsTabStop="True"
+             Height="700" Width="550" MouseLeftButtonDown="LeftMouseClick">
     <UserControl.DataContext>
-        <viewmodel:MazeViewModel />
+        <viewmodel:MazeViewModel/>
     </UserControl.DataContext>
+
     <UserControl.InputBindings>
-        <KeyBinding Key="Left" Command="{Binding KeyLeft}" />
-        <KeyBinding Key="Right" Command="{Binding KeyRight}" />
         <KeyBinding Key="Down" Command="{Binding KeyDown}" />
         <KeyBinding Key="Up" Command="{Binding KeyUp}" />
+        <KeyBinding Key="Left" Command="{Binding KeyLeft}" />
+        <KeyBinding Key="Right" Command="{Binding KeyRight}"/>
     </UserControl.InputBindings>
 
     <Grid Margin="5,10,5,0">

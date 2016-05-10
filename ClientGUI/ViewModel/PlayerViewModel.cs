@@ -76,7 +76,7 @@ namespace ClientGui.ViewModel
         {
             get
             {
-                return 13.1 * col;
+                return 13.45 * col;
             }
         }
 
@@ -84,7 +84,7 @@ namespace ClientGui.ViewModel
         {
             get
             {
-                return 13.1 * (40 - 1 - col);
+                return 13.45 * (40 - 1 - col);
             }
         }
     }

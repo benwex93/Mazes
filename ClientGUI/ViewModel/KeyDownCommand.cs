@@ -34,6 +34,7 @@ namespace ClientGui.ViewModel
 
         public void Execute(object param)
         {
+            
             Console.WriteLine("Execute function");      // NOT PRINTED!!!
             maze.MoveDown();
         }

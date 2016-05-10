@@ -7,7 +7,7 @@
         xmlns:model="clr-namespace:ClientGui.ViewModel"
         mc:Ignorable="d"
         xmlns:controls="clr-namespace:ClientGui.View"
-        Title="Welcome To Mazes" Background="Black">
+        Title="Welcome To Mazes" Background="Black" Height="825" Width="768">
     <Window.DataContext>
         <model:MainWindowViewModel/>
     </Window.DataContext>

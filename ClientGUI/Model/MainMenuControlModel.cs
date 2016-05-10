@@ -95,7 +95,9 @@ namespace ClientGui.Model
         }
         public void SinglePlayerOption()
         {
+            //MazeControl mc = new MazeControl();
             AppModel.SwitchCurrentView(new MazeControl());
+            //mc.Focus();
         }
         public void MultiplayerOption()
         {

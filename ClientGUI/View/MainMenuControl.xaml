@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
-             xmlns:local="clr-namespace:ClientGui.ViewModel" Background="{Binding backgroundColor}">
+             xmlns:local="clr-namespace:ClientGui.ViewModel"
+             Background="{Binding backgroundColor}">
     <UserControl.DataContext>
         <local:MainMenuControlViewModel/>
     </UserControl.DataContext>
