@@ -29,6 +29,6 @@
             <Image x:Name="image" Height="100" Width="100" Source="../Pictures/CalFinal.png"/>
             <Button x:Name="back" Content="Go Back" Height="40" Margin="20" Width="80" HorizontalAlignment="Center" Command="{Binding goToMainMenu}"/>
         </StackPanel>
-        <local:MazeControl/>
+        <local:MazeControl x:Name="maze" Loaded="Maze_Loaded"/>
     </StackPanel>
 </UserControl>

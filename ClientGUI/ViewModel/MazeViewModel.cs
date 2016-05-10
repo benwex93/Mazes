@@ -9,6 +9,7 @@ using System.ComponentModel;
 using ClientGui.Model;
 using System.Windows;
 using System.Windows.Input;
+using ClientGui.View;
 
 namespace ClientGui.ViewModel
 {
@@ -17,6 +18,7 @@ namespace ClientGui.ViewModel
         private ServerSpeaker speaker;
         private ObservableCollection<MazeBoxViewModel> boxList;
         private PlayerViewModel player;
+        private PlayerViewModel end;
         private MazeData data;
         private ICommand keyUp;
         private ICommand keyDown;
@@ -28,11 +30,11 @@ namespace ClientGui.ViewModel
             try
             {
                 speaker = AppViewModel.GetServerSpeaker();
-                GetMazeData(speaker.Get_Reply());
+                data = GetMazeData(speaker.Get_Reply());
                 boxList = MakeBoxList();
                 CallPropertyChanged("BoxList");
                 player = new PlayerViewModel(@"/Pictures/CalFinal.png", data.Start.Row, data.Start.Col);
-                CallPropertyChanged("PlayerMargin");
+                end = new PlayerViewModel(@"/Pictures/redsquare.png", data.End.Row, data.End.Col);
                 keyUp = new KeyUpCommand(this);
                 keyDown = new KeyDownCommand(this);
                 keyRight = new KeyRightCommand(this);
@@ -40,7 +42,6 @@ namespace ClientGui.ViewModel
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error MazeViewModel Constructor " + e.ToString());
             }  
         }
 
@@ -53,11 +54,11 @@ namespace ClientGui.ViewModel
             set { }
         }
 
-        private void GetMazeData(string str)
+        private MazeData GetMazeData(string str)
         {
             JavaScriptSerializer serializer = new JavaScriptSerializer();
-            data = serializer.Deserialize<MazeData>(str);
-            DoTheThing();
+            MazeData data = serializer.Deserialize<MazeData>(str);
+            return data;
         }
 
         private ObservableCollection<MazeBoxViewModel> MakeBoxList()
@@ -145,7 +146,21 @@ namespace ClientGui.ViewModel
             }
             set { }
         }
-
+        public Thickness EndMargin
+        {
+            get
+            {
+                return new Thickness(end.MargLeft, end.MargTop, end.MargRight, end.MargBott);
+            }
+        }
+        public string EndImg
+        {
+            get
+            {
+                return end.Image;
+            }
+            set { }
+        }
         public ICommand KeyUp
         {
             get
@@ -219,16 +234,6 @@ namespace ClientGui.ViewModel
         public MazeData GetMazeData()
         {
             return data;
-        }
-
-        private void DoTheThing()
-        {
-            int temp = data.Start.Col;
-            data.Start.Col = data.Start.Row;
-            data.Start.Row = temp;
-            temp = data.End.Col;
-            data.End.Col = data.End.Row;
-            data.End.Row = temp;
         }
     }
 }

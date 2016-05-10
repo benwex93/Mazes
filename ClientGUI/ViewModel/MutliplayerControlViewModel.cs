@@ -20,10 +20,7 @@ namespace ClientGui.ViewModel
         //  public event PropertyChangedEventHandler PropertyChanged;
         private ButtonICommand mainMenuCommand;
         private ButtonICommand getHintCommand;
-
-        //  public SolidColorBrush backgroundColor { get; set; } = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-        //public Visibility menuSelectionVisibility3 { get; set; } = Visibility.Hidden;
-
+        private string gameName;
         public ICommand goToMainMenu
         {
             get
@@ -38,10 +35,16 @@ namespace ClientGui.ViewModel
                 return getHintCommand;
             }
         }
-        /** public void MainMenuVM_PropertyChanged(PropertyChangedEventArgs e)
-         {
-             if (PropertyChanged != null)
-                 PropertyChanged(this, e);
-         }**/
+        public string GameName
+        {
+            get
+            {
+                return gameName;
+            }
+            set
+            {
+
+            }
+        }
     }
 }

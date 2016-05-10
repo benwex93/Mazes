@@ -22,6 +22,8 @@ namespace ClientGui.View
     {
         public MultiplayerControl()
         {
+            GameNameSetter GNS = new GameNameSetter();
+            GNS.ShowDialog();
             InitializeComponent();
         }
     }

@@ -10,24 +10,22 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ClientGui.View
 {
     /// <summary>
-    /// Interaction logic for SinglePlayerControl.xaml
+    /// Interaction logic for GameNameSetter.xaml
     /// </summary>
-    public partial class SinglePlayerControl : UserControl
+    public partial class GameNameSetter : Window
     {
-        public SinglePlayerControl()
+        public GameNameSetter()
         {
             InitializeComponent();
         }
-
-        private void Maze_Loaded(object sender, RoutedEventArgs e)
+        private void OKbutton_Click(object sender, RoutedEventArgs e)
         {
-            maze.Focus();
+            this.Close();
         }
     }
 }

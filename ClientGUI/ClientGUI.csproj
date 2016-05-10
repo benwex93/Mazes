@@ -40,6 +40,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -80,6 +81,9 @@
     <Compile Include="ViewModel\MutliplayerControlViewModel.cs" />
     <Compile Include="ViewModel\PlayerViewModel.cs" />
     <Compile Include="ViewModel\SinglePlayerControlViewModel.cs" />
+    <Compile Include="View\GameNameSetter.xaml.cs">
+      <DependentUpon>GameNameSetter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MainMenuControl.xaml.cs">
       <DependentUpon>MainMenuControl.xaml</DependentUpon>
     </Compile>
@@ -104,6 +108,10 @@
     <Compile Include="View\SinglePlayerWindow.xaml.cs">
       <DependentUpon>SinglePlayerWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\GameNameSetter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainMenuControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -226,6 +234,7 @@
   <ItemGroup>
     <Content Include="Music\PenguinWars.mp3" />
     <Content Include="Music\Tetris.mp3" />
+    <Resource Include="Pictures\NameOfYourGame.png" />
     <Resource Include="Pictures\redsquare.png" />
   </ItemGroup>
   <ItemGroup />

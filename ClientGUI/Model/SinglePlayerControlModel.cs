@@ -13,7 +13,11 @@ namespace ClientGui.Model
         {
             AppModel.SwitchCurrentView(new MainMenuControl());
         }
-        public void getHintOnMaze()
+        public void GetHintOnMaze()
+        {
+            AppModel.SwitchCurrentView(new MainMenuControl());
+        }
+        public void FocusAndStart()
         {
             AppModel.SwitchCurrentView(new MainMenuControl());
         }
