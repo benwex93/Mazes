@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="ClientGui.View.MultiplayerControl"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ClientGui.View"
+             xmlns:viewmodel="clr-namespace:ClientGui.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Background="Black">
+    <UserControl.DataContext>
+        <viewmodel:SinglePlayerControlViewModel/>
+    </UserControl.DataContext>
+    <StackPanel Orientation="Horizontal">
+        <MediaElement Name="myMediaElement">
+            <MediaElement.Triggers>
+                <EventTrigger RoutedEvent="MediaElement.Loaded">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <MediaTimeline Source="../../Music/PenguinWars.mp3" Storyboard.TargetName="myMediaElement" RepeatBehavior="Forever" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </MediaElement.Triggers>
+        </MediaElement>
+        <StackPanel Height="Auto" Width="Auto" Name ="Player1">
+            <StackPanel Orientation ="Horizontal"  Height="Auto" Width="Auto">
+                <Image Height="100" Source="../Pictures/Player-1.png"/>
+                <Image Height="100" Source="../Pictures/CalFinal.png"/>
+            </StackPanel>
+            <local:MazeControl/>
+        </StackPanel>
+        <StackPanel Height="Auto" VerticalAlignment="Center" Width="Auto" HorizontalAlignment="Center">
+            <Button x:Name="hint" Content="Hint!" Height="40" Margin="20" Width="80" HorizontalAlignment="Center" Command="{Binding getHint}"/>
+            <Button x:Name="back" Content="Go Back" Height="40" Margin="20" Width="80" HorizontalAlignment="Center" Command="{Binding goToMainMenu}"/>
+        </StackPanel>
+        <StackPanel Height="Auto" Width="Auto" Name ="Player2">
+            <StackPanel Orientation ="Horizontal"  Height="Auto" Width="Auto">
+                <Image Height="100" Source="../Pictures/Player-2.png"/>
+                <Image Height="100" Source="../Pictures/BenjyFinal.png"/>
+            </StackPanel>
+            <local:MazeControl/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
+

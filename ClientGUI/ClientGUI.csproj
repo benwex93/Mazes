@@ -64,7 +64,9 @@
     <Compile Include="Model\MazeData.cs" />
     <Compile Include="Model\MazeDimensions.cs" />
     <Compile Include="Model\MazeNodeData.cs" />
+    <Compile Include="Model\MultiplayerControlModel.cs" />
     <Compile Include="Model\ServerSpeaker.cs" />
+    <Compile Include="Model\SinglePlayerControlModel.cs" />
     <Compile Include="ViewModel\AppViewModel.cs" />
     <Compile Include="ViewModel\KeyDownCommand.cs" />
     <Compile Include="ViewModel\KeyLeftCommand.cs" />
@@ -75,7 +77,9 @@
     <Compile Include="ViewModel\MazeBoxViewModel.cs" />
     <Compile Include="ViewModel\MazeInfo.cs" />
     <Compile Include="ViewModel\MazeViewModel.cs" />
+    <Compile Include="ViewModel\MutliplayerControlViewModel.cs" />
     <Compile Include="ViewModel\PlayerViewModel.cs" />
+    <Compile Include="ViewModel\SinglePlayerControlViewModel.cs" />
     <Compile Include="View\MainMenuControl.xaml.cs">
       <DependentUpon>MainMenuControl.xaml</DependentUpon>
     </Compile>
@@ -83,6 +87,9 @@
       <DependentUpon>MazeControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MazeDisplay.cs" />
+    <Compile Include="View\MultiplayerControl.xaml.cs">
+      <DependentUpon>MultiplayerControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MultiplayerWindow.xaml.cs">
       <DependentUpon>MultiplayerWindow.xaml</DependentUpon>
     </Compile>
@@ -90,6 +97,9 @@
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="View\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SinglePlayerControl.xaml.cs">
+      <DependentUpon>SinglePlayerControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SinglePlayerWindow.xaml.cs">
       <DependentUpon>SinglePlayerWindow.xaml</DependentUpon>
@@ -114,11 +124,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\MultiplayerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MultiplayerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SinglePlayerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

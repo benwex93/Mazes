@@ -77,7 +77,7 @@ namespace ClientGui.Model
                 mainMenuVM.calRunning3Visibility = Visibility.Hidden;
                 mainMenuVM.calRunning4Visibility = Visibility.Visible;
                 mainMenuVM.menuSelectionVisibility3 = Visibility.Hidden;
-                mainMenuVM.menuSelectionVisibility1 = Visibility.Visible;
+                mainMenuVM.menuSelectionVisibility1 = Visibility.Hidden;
                 mainMenuVM.MainMenuVM_PropertyChanged(new PropertyChangedEventArgs("menuSelectionVisibility3"));
                 mainMenuVM.MainMenuVM_PropertyChanged(new PropertyChangedEventArgs("menuSelectionVisibility1"));
                 mainMenuVM.MainMenuVM_PropertyChanged(new PropertyChangedEventArgs("calRunning3Visibility"));
@@ -86,6 +86,8 @@ namespace ClientGui.Model
             }
             else
             {
+                mainMenuVM.menuSelectionVisibility1 = Visibility.Visible;
+                mainMenuVM.MainMenuVM_PropertyChanged(new PropertyChangedEventArgs("menuSelectionVisibility1"));
                 mainMenuVM.calRunning4Visibility = Visibility.Hidden;
                 mainMenuVM.calRunning1Visibility = Visibility.Visible;
                 mainMenuVM.MainMenuVM_PropertyChanged(new PropertyChangedEventArgs("calRunning4Visibility"));
@@ -95,13 +97,11 @@ namespace ClientGui.Model
         }
         public void SinglePlayerOption()
         {
-            //MazeControl mc = new MazeControl();
-            AppModel.SwitchCurrentView(new MazeControl());
-            //mc.Focus();
+            AppModel.SwitchCurrentView(new SinglePlayerControl());
         }
         public void MultiplayerOption()
         {
-            AppModel.SwitchCurrentView(new MazeControl());
+            AppModel.SwitchCurrentView(new MultiplayerControl());
         }
         public void SettingsOption()
         {
