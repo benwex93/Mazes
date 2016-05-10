@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 using System.IO;
+using ClientGui.Model;
 
-namespace ClientGui
+namespace ClientGui.ViewModel
 {
     public class SettingsViewModel
     {

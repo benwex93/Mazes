@@ -4,9 +4,40 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ClientGui.View"
+             xmlns:viewmodel="clr-namespace:ClientGui.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" Background="Brown">
-    <Grid>
-            
+             d:DesignHeight="700" d:DesignWidth="550">
+    <UserControl.DataContext>
+        <viewmodel:MazeViewModel />
+    </UserControl.DataContext>
+    <UserControl.InputBindings>
+        <KeyBinding Key="Left" Command="{Binding KeyLeft}" />
+        <KeyBinding Key="Right" Command="{Binding KeyRight}" />
+        <KeyBinding Key="Down" Command="{Binding KeyDown}" />
+        <KeyBinding Key="Up" Command="{Binding KeyUp}" />
+    </UserControl.InputBindings>
+
+    <Grid Margin="5,10,5,0">
+        <ItemsControl ItemsSource="{Binding BoxList}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="40" Rows="50">
+                    </UniformGrid>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Image
+                        Source="{Binding colorImg}">
+                    </Image>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Image
+            Source="{Binding PlayerImg}" Margin="{Binding PlayerMargin}">
+        </Image>
     </Grid>
+
+
+
 </UserControl>
