@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
-namespace ClientGui
+namespace ClientGui.View
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -90,7 +90,7 @@ namespace ClientGui
 
         private void SinglePlayer_IsMouseDirectlyOverChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if(Select1.Visibility == Visibility.Hidden)
+            if (Select1.Visibility == Visibility.Hidden)
                 Select1.Visibility = Visibility.Visible;
             else
                 Select1.Visibility = Visibility.Hidden;

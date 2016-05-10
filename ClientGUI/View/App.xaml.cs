@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace ClientGui
+namespace ClientGui.View
 {
     /// <summary>
     /// Interaction logic for App.xaml
@@ -16,9 +16,12 @@ namespace ClientGui
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            ClientGui.MainWindow window = new MainWindow();
-            AppViewModel.ConfigureInfo();
+            ClientGui.View.MainWindow window = new MainWindow();
+            //ClientGui.MazeControlTest window = new MazeControlTest();
+            ViewModel.AppViewModel.ConfigureInfo();
             //window.DataContext = VM;
+            //MazeViewModel vm = new MazeViewModel();
+
             window.Show();
         }
     }

@@ -5,13 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 using System.IO;
+using ClientGui.Model;
 
-namespace ClientGui
+namespace ClientGui.ViewModel
 {
     public static class AppViewModel
     {
         private static SettingsInfo info;
         private static ServerSpeaker speaker;
+        private static MazeDimensions dims;
 
         public static void ConfigureInfo()
         {
@@ -44,6 +46,11 @@ namespace ClientGui
                 info = new SettingsInfo(ip, port);
                 speaker = new ServerSpeaker(info);
             }
+            string heightStr = ConfigurationManager.AppSettings["maze height"];
+            string lengthStr = ConfigurationManager.AppSettings["maze length"];
+            int height = Int32.Parse(heightStr);
+            int len = Int32.Parse(lengthStr);
+            dims = new MazeDimensions(height, len);
         }
 
         public static SettingsInfo GetSettingsInfo()
@@ -54,6 +61,11 @@ namespace ClientGui
         public static ServerSpeaker GetServerSpeaker()
         {
             return speaker;
+        }
+
+        public static MazeDimensions GetMazeDimensions()
+        {
+            return dims;
         }
     }
 }

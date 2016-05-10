@@ -41,9 +41,9 @@ namespace Mazes
         public string GetStringFromArray()
         {
             string mazeString = "";
-            for (int col = 0; col < mazeHeight * 2; col++)
+            for (int row = 0; row < mazeLength * 2; row++)
             {
-                for (int row = 0; row < mazeLength * 2; row++)
+                for (int col = 0; col < mazeHeight * 2; col++)
                 {
                     //if wall
                     if (visualMazeArray[row, col] == '\0')
