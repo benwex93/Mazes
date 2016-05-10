@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:ClientGui.View"
              xmlns:viewmodel="clr-namespace:ClientGui.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="550">
+             Height="700" Width="550">
     <UserControl.DataContext>
         <viewmodel:MazeViewModel />
     </UserControl.DataContext>
