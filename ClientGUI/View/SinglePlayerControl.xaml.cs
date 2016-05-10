@@ -24,5 +24,10 @@ namespace ClientGui.View
         {
             InitializeComponent();
         }
+
+        private void Maze_Loaded(object sender, RoutedEventArgs e)
+        {
+            maze.Focus();
+        }
     }
 }

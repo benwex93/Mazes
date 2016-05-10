@@ -13,7 +13,7 @@ namespace ClientGui.ViewModel
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        public UserControl currentView;
+        public UserControl currentView = new MainMenuControl();
         // simplified properties
         public UserControl CurrentView {
             get { return currentView; }
@@ -22,7 +22,6 @@ namespace ClientGui.ViewModel
         {
             //sets main window view model of application
             AppModel.mainWindowViewModel = this;
-            AppModel.SwitchCurrentView(new MainMenuControl());
         }
 
         public void MainWindow_PropertyChanged(PropertyChangedEventArgs e)

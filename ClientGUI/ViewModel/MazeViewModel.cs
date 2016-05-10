@@ -17,6 +17,7 @@ namespace ClientGui.ViewModel
         private ServerSpeaker speaker;
         private ObservableCollection<MazeBoxViewModel> boxList;
         private PlayerViewModel player;
+        private PlayerViewModel end;
         private MazeData data;
         private ICommand keyUp;
         private ICommand keyDown;
@@ -32,6 +33,7 @@ namespace ClientGui.ViewModel
                 boxList = MakeBoxList();
                 CallPropertyChanged("BoxList");
                 player = new PlayerViewModel(@"/Pictures/CalFinal.png", data.Start.Row, data.Start.Col);
+                end = new PlayerViewModel(@"/Pictures/redsquare.png", data.End.Row, data.End.Col-1);
                 keyUp = new KeyUpCommand(this);
                 keyDown = new KeyDownCommand(this);
                 keyRight = new KeyRightCommand(this);
@@ -143,7 +145,21 @@ namespace ClientGui.ViewModel
             }
             set { }
         }
-
+        public Thickness EndMargin
+        {
+            get
+            {
+                return new Thickness(end.MargLeft, end.MargTop, end.MargRight, end.MargBott);
+            }
+        }
+        public string EndImg
+        {
+            get
+            {
+                return end.Image;
+            }
+            set { }
+        }
         public ICommand KeyUp
         {
             get

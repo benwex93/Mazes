@@ -39,6 +39,9 @@
         <Image
             Source="{Binding PlayerImg}" Margin="{Binding PlayerMargin}">
         </Image>
+        <Image
+            Source="{Binding EndImg}" Margin="{Binding EndMargin}">
+        </Image>
     </Grid>
 
 

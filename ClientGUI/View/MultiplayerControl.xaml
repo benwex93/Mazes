@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:ClientGui.View"
              xmlns:viewmodel="clr-namespace:ClientGui.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" Background="Black">
+             Background="Black">
     <UserControl.DataContext>
         <viewmodel:SinglePlayerControlViewModel/>
     </UserControl.DataContext>

@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace ClientGui.Model
 {
-    class ButtonICommand : ICommand
+    public class ButtonICommand : ICommand
     {
         private Action ExecuteAction;
 
