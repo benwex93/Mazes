@@ -10,21 +10,22 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ClientGui.View
 {
     /// <summary>
-    /// Interaction logic for MultiplayerControl.xaml
+    /// Interaction logic for GameNameSetter.xaml
     /// </summary>
-    public partial class MultiplayerControl : UserControl
+    public partial class GameNameSetter : Window
     {
-        public MultiplayerControl()
+        public GameNameSetter()
         {
-            GameNameSetter GNS = new GameNameSetter();
-            GNS.ShowDialog();
             InitializeComponent();
+        }
+        private void OKbutton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

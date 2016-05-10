@@ -9,6 +9,7 @@ using System.ComponentModel;
 using ClientGui.Model;
 using System.Windows;
 using System.Windows.Input;
+using ClientGui.View;
 
 namespace ClientGui.ViewModel
 {
@@ -33,7 +34,7 @@ namespace ClientGui.ViewModel
                 boxList = MakeBoxList();
                 CallPropertyChanged("BoxList");
                 player = new PlayerViewModel(@"/Pictures/CalFinal.png", data.Start.Row, data.Start.Col);
-                end = new PlayerViewModel(@"/Pictures/redsquare.png", data.End.Row, data.End.Col-1);
+                end = new PlayerViewModel(@"/Pictures/redsquare.png", data.End.Row, data.End.Col);
                 keyUp = new KeyUpCommand(this);
                 keyDown = new KeyDownCommand(this);
                 keyRight = new KeyRightCommand(this);
