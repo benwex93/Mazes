@@ -28,10 +28,11 @@ namespace ClientGui.ViewModel
             try
             {
                 speaker = AppViewModel.GetServerSpeaker();
-                data = GetMazeData(speaker.Get_Reply());
+                GetMazeData(speaker.Get_Reply());
                 boxList = MakeBoxList();
                 CallPropertyChanged("BoxList");
                 player = new PlayerViewModel(@"/Pictures/CalFinal.png", data.Start.Row, data.Start.Col);
+                CallPropertyChanged("PlayerMargin");
                 keyUp = new KeyUpCommand(this);
                 keyDown = new KeyDownCommand(this);
                 keyRight = new KeyRightCommand(this);
@@ -39,6 +40,7 @@ namespace ClientGui.ViewModel
             }
             catch (Exception e)
             {
+                Console.WriteLine("Error MazeViewModel Constructor " + e.ToString());
             }  
         }
 
@@ -51,11 +53,11 @@ namespace ClientGui.ViewModel
             set { }
         }
 
-        private MazeData GetMazeData(string str)
+        private void GetMazeData(string str)
         {
             JavaScriptSerializer serializer = new JavaScriptSerializer();
-            MazeData data = serializer.Deserialize<MazeData>(str);
-            return data;
+            data = serializer.Deserialize<MazeData>(str);
+            DoTheThing();
         }
 
         private ObservableCollection<MazeBoxViewModel> MakeBoxList()
@@ -217,6 +219,16 @@ namespace ClientGui.ViewModel
         public MazeData GetMazeData()
         {
             return data;
+        }
+
+        private void DoTheThing()
+        {
+            int temp = data.Start.Col;
+            data.Start.Col = data.Start.Row;
+            data.Start.Row = temp;
+            temp = data.End.Col;
+            data.End.Col = data.End.Row;
+            data.End.Row = temp;
         }
     }
 }

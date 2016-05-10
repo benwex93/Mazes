@@ -4,6 +4,7 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using System.Configuration;
+using Mazes;
 
 namespace Server
 {
@@ -14,11 +15,18 @@ namespace Server
 	{
         /// <summary>
         /// The server's main method. It creates the model, presenter, and view and tells the view to
-        /// start handling connections with clients.
+        /// start handling connections with clients. It also sets the dimensions of all mazes made in
+        /// this program.
         /// </summary>
         /// <param name="args"></param>
 		public static void Main (string[] args)
 		{
+            string lenStr = ConfigurationManager.AppSettings["maze length"];
+            string heightStr = ConfigurationManager.AppSettings["maze height"];
+            int height = Int32.Parse(heightStr);
+            int len = Int32.Parse(lenStr);
+            Mazes.MazeProgram.ConfigureDimensions(height, len);
+
 			IPresenter p = new MyPresenter ();
 			IModel m = new MyModel (p);
 			IView v = new MyView (p);

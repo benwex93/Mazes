@@ -104,6 +104,7 @@ namespace ClientGui.Model
         }
         public void MultiplayerOption()
         {
+            speaker.MultiplayerCommand();
             AppModel.SwitchCurrentView(new MultiplayerControl());
         }
         public void SettingsOption()

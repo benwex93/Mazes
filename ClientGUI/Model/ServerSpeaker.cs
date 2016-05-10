@@ -53,6 +53,12 @@ namespace ClientGui.Model
             byte[] data = new byte[5096];
             int recv = server.Receive(data);
             server_Reply = Encoding.ASCII.GetString(data, 0, recv);
+            Console.WriteLine(server_Reply);
+        }
+
+        public void MultiplayerCommand()
+        {
+
         }
     }
 }
