@@ -11,10 +11,10 @@ namespace Mazes
         //values set here for testing
         static int mazeHeight = 20;
         static int mazeLength = 25;
-        public static void ConfigureDimensions(string name, int generateType)
+        public static void ConfigureDimensions(int height, int length)
         {
-            mazeHeight = 20;
-            mazeLength = 25;
+            mazeHeight = height;
+            mazeLength = length;
         }
         public static void GenerateMaze(string name, int generateType)
         {

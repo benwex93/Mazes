@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="ClientGui.View.MainMenuControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             xmlns:local="clr-namespace:ClientGui.ViewModel" Background="{Binding backgroundColor}">
+    <UserControl.DataContext>
+        <local:MainMenuControlViewModel/>
+    </UserControl.DataContext>
+    <StackPanel Name="MainPanel" HorizontalAlignment="Center">
+        <MediaElement Name="myMediaElement">
+            <MediaElement.Triggers>
+                <EventTrigger RoutedEvent="MediaElement.Loaded">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <MediaTimeline Source="../../Music/Tetris.mp3" Storyboard.TargetName="myMediaElement" RepeatBehavior="Forever" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </MediaElement.Triggers>
+        </MediaElement>
+        <Image x:Name="TitleImage" Source="../Pictures/MAZES.png" MaxWidth="700" MaxHeight="500"/>
+        <Grid Height ="100" HorizontalAlignment="Center" Margin="0,0,70,0">
+            <Canvas>
+                <Image x:Name="CalRunning1" Source="../Pictures/FinalRunner1.png" Visibility="{Binding calRunning1Visibility}"/>
+                <Image x:Name="CalRunning2" Source="../Pictures/FinalRunner2.png" Visibility="{Binding calRunning2Visibility}"/>
+                <Image x:Name="CalRunning3" Source="../Pictures/FinalRunner3.png" Visibility="{Binding calRunning3Visibility}"/>
+                <Image x:Name="CalRunning4" Source="../Pictures/FinalRunner2.png" Visibility="{Binding calRunning4Visibility}"/>
+            </Canvas>
+        </Grid>
+        <StackPanel HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Height ="Auto" Width ="Auto" HorizontalAlignment="Center">
+                <Image x:Name="Select1" Source="../Pictures/Select.png" Visibility="{Binding menuSelectionVisibility1}"/>
+                <Image Height ="70" x:Name="SinglePlayer" Source="../Pictures/Single-Player.png">
+                    <Image.InputBindings>
+                        <MouseBinding Gesture="LeftClick" Command="{Binding goToSinglePlayerScreen}" />
+                    </Image.InputBindings>
+                </Image>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height ="Auto" Width ="Auto" HorizontalAlignment="Center">
+                <Image x:Name="Select2" Source="../Pictures/Select.png"  Visibility="{Binding menuSelectionVisibility2}"/>
+                <Image Height ="70" x:Name="Multiplayer" Source="../Pictures/Multiplayer.png">
+                    <Image.InputBindings>
+                        <MouseBinding Gesture="LeftClick" Command="{Binding goToMultiplayerScreen}" />
+                    </Image.InputBindings>
+                </Image>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height ="Auto" Width ="Auto" HorizontalAlignment="Center">
+                <Image x:Name="Select3" Source="../Pictures/Select.png"  Visibility="{Binding menuSelectionVisibility3}"/>
+                <Image Height ="70" x:Name="Settings" Source="../Pictures/Settings.png">
+                    <Image.InputBindings>
+                        <MouseBinding Gesture="LeftClick" Command="{Binding goToSettings}" />
+                    </Image.InputBindings>
+                </Image>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
