@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ClientGui.View;
+using ClientGui.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +25,7 @@ namespace ClientGui
         private MediaPlayer player;
         public SinglePlayerWindow()
         {
-            InitializeComponent();
+           // InitializeComponent();
             InitializeMusic();
             GetMazeInfo();
             AddGrid();
@@ -51,7 +53,7 @@ namespace ClientGui
         public void AddGrid()
         {
             Grid maze = mazeDisplay.GetMazeToGrid(true, false);
-            windowBackground.Children.Add(maze);
+            //windowBackground.Children.Add(maze);
         }
         private void back_Click(object sender, RoutedEventArgs e)
         {

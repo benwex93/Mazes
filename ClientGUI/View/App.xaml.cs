@@ -16,7 +16,7 @@ namespace ClientGui.View
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            ClientGui.View.MainWindow window = new MainWindow();
+            MainWindow window = new MainWindow();
             //ClientGui.MazeControlTest window = new MazeControlTest();
             ViewModel.AppViewModel.ConfigureInfo();
             //window.DataContext = VM;
