@@ -12,7 +12,7 @@ namespace ClientGui.ViewModel
     public static class AppViewModel
     {
         private static SettingsInfo info;
-        private static ServerSpeaker speaker;
+        public static ServerSpeaker speaker;
         private static MazeDimensions dims;
 
         public static void ConfigureInfo()

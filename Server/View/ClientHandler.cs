@@ -52,13 +52,19 @@ namespace Server
 		public void handle(Object State)
         {
 			while (true) {
-				byte[] data = new byte[1024];
-				int recv = client.Receive (data);
-				if (recv == 0)
-					break;
-				string str = Encoding.ASCII.GetString (
-					data, 0, recv);
-				p.DoNewTask (str, tHandler);
+                try
+                {
+                    byte[] data = new byte[1024];
+                    int recv = client.Receive(data);
+                    if (recv == 0)
+                        break;
+                    string str = Encoding.ASCII.GetString(
+                        data, 0, recv);
+                    p.DoNewTask(str, tHandler);
+                } catch
+                {
+
+                }
 			}
 			client.Close ();
 		}

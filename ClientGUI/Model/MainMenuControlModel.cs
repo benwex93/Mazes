@@ -15,12 +15,14 @@ namespace ClientGui.Model
     public class MainMenuControlModel
     {
         private int animationTickCounter = 0;
-        MainMenuControlViewModel mainMenuVM;
+        private MainMenuControlViewModel mainMenuVM;
+        private ServerSpeaker speaker;
         public MainMenuControlModel(MainMenuControlViewModel mainMenuVM)
         {
             this.mainMenuVM = mainMenuVM;
             InitializeRunningAnimationTimer();
             InitializeBackgroundTimer();
+            speaker = AppViewModel.GetServerSpeaker();
         }
         void InitializeBackgroundTimer()
         {
@@ -97,6 +99,7 @@ namespace ClientGui.Model
         }
         public void SinglePlayerOption()
         {
+            speaker.GenerateCommand();
             AppModel.SwitchCurrentView(new SinglePlayerControl());
         }
         public void MultiplayerOption()
