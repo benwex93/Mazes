@@ -41,7 +41,7 @@ namespace ClientGui.Model
             else
                 brush = new SolidColorBrush(Color.FromRgb(255, 255, 255));
             mainMenuVM.backgroundColor = brush;
-            mainMenuVM.MainMenuVM_PropertyChanged(new PropertyChangedEventArgs("backgroundColor"));
+            mainMenuVM.MainMenuVM_PropertyChanged("backgroundColor");
         }
         void InitializeRunningAnimationTimer()
         {
@@ -58,10 +58,6 @@ namespace ClientGui.Model
                 mainMenuVM.calRunning2Visibility = Visibility.Visible;
                 mainMenuVM.menuSelectionVisibility1 = Visibility.Hidden;
                 mainMenuVM.menuSelectionVisibility2 = Visibility.Visible;
-                mainMenuVM.MainMenuVM_PropertyChanged(new PropertyChangedEventArgs("menuSelectionVisibility1"));
-                mainMenuVM.MainMenuVM_PropertyChanged(new PropertyChangedEventArgs("menuSelectionVisibility2"));
-                mainMenuVM.MainMenuVM_PropertyChanged(new PropertyChangedEventArgs("calRunning1Visibility"));
-                mainMenuVM.MainMenuVM_PropertyChanged(new PropertyChangedEventArgs("calRunning2Visibility"));
                 animationTickCounter++;
             }
             else if (animationTickCounter == 1)
@@ -70,10 +66,6 @@ namespace ClientGui.Model
                 mainMenuVM.calRunning3Visibility = Visibility.Visible;
                 mainMenuVM.menuSelectionVisibility2 = Visibility.Hidden;
                 mainMenuVM.menuSelectionVisibility3 = Visibility.Visible;
-                mainMenuVM.MainMenuVM_PropertyChanged(new PropertyChangedEventArgs("menuSelectionVisibility2"));
-                mainMenuVM.MainMenuVM_PropertyChanged(new PropertyChangedEventArgs("menuSelectionVisibility3"));
-                mainMenuVM.MainMenuVM_PropertyChanged(new PropertyChangedEventArgs("calRunning2Visibility"));
-                mainMenuVM.MainMenuVM_PropertyChanged(new PropertyChangedEventArgs("calRunning3Visibility"));
                 animationTickCounter++;
             }
             else if (animationTickCounter == 2)
@@ -82,20 +74,13 @@ namespace ClientGui.Model
                 mainMenuVM.calRunning4Visibility = Visibility.Visible;
                 mainMenuVM.menuSelectionVisibility3 = Visibility.Hidden;
                 mainMenuVM.menuSelectionVisibility1 = Visibility.Hidden;
-                mainMenuVM.MainMenuVM_PropertyChanged(new PropertyChangedEventArgs("menuSelectionVisibility3"));
-                mainMenuVM.MainMenuVM_PropertyChanged(new PropertyChangedEventArgs("menuSelectionVisibility1"));
-                mainMenuVM.MainMenuVM_PropertyChanged(new PropertyChangedEventArgs("calRunning3Visibility"));
-                mainMenuVM.MainMenuVM_PropertyChanged(new PropertyChangedEventArgs("calRunning4Visibility"));
                 animationTickCounter++;
             }
             else
             {
                 mainMenuVM.menuSelectionVisibility1 = Visibility.Visible;
-                mainMenuVM.MainMenuVM_PropertyChanged(new PropertyChangedEventArgs("menuSelectionVisibility1"));
                 mainMenuVM.calRunning4Visibility = Visibility.Hidden;
                 mainMenuVM.calRunning1Visibility = Visibility.Visible;
-                mainMenuVM.MainMenuVM_PropertyChanged(new PropertyChangedEventArgs("calRunning4Visibility"));
-                mainMenuVM.MainMenuVM_PropertyChanged(new PropertyChangedEventArgs("calRunning1Visibility"));
                 animationTickCounter = 0;
             }
         }
@@ -107,8 +92,6 @@ namespace ClientGui.Model
         }
         public void MultiplayerOption()
         {
-            mainMenuVM.waitingVisibility = Visibility.Visible;
-            mainMenuVM.MainMenuVM_PropertyChanged(new PropertyChangedEventArgs("waitingVisibility"));
             GNS.Close();
             speaker.MultiplayerCommand(mainMenuVM.MultiplayGameName);
             Console.WriteLine("Waiting for multiplayer...and the Messiah");
@@ -122,6 +105,7 @@ namespace ClientGui.Model
 
         public void MultiplayerNameSetter()
         {
+            mainMenuVM.waitingVisibility = Visibility.Visible;
             GNS = new GameNameSetter();
             GNS.DataContext = mainMenuVM;
             GNS.ShowDialog();

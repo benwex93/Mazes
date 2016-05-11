@@ -44,7 +44,8 @@ namespace ClientGui.ViewModel
                 firstHint = new PlayerViewModel(@"/Pictures/yellowsquare.png", data.Start.Row, data.Start.Col-1, DisplayMazeHeight, DisplayMazeWidth);
                 secondHint = new PlayerViewModel(@"/Pictures/yellowsquare.png", data.Start.Row, data.Start.Col-2, DisplayMazeHeight, DisplayMazeWidth);
                 thirdHint = new PlayerViewModel(@"/Pictures/yellowsquare.png", data.Start.Row, data.Start.Col-3, DisplayMazeHeight, DisplayMazeWidth);
-                hintCalculator = new HintCalculator(player, firstHint, secondHint, thirdHint);
+                speaker.SolveCommand();
+                hintCalculator = new HintCalculator(player, firstHint, secondHint, thirdHint, speaker.Get_Reply());
                 keyUp = new KeyUpCommand(this);
                 keyDown = new KeyDownCommand(this);
                 keyRight = new KeyRightCommand(this);
@@ -176,7 +177,7 @@ namespace ClientGui.ViewModel
         {
             get
             {
-                firstHint = hintCalculator.GetHintBox1();
+                //firstHint = hintCalculator.GetHintBox1();
                 return new Thickness(firstHint.MargLeft, firstHint.MargTop, firstHint.MargRight, firstHint.MargBott);
             }
         }
@@ -184,7 +185,7 @@ namespace ClientGui.ViewModel
         {
             get
             {
-                secondHint = hintCalculator.GetHintBox2();
+                //secondHint = hintCalculator.GetHintBox2();
                 return new Thickness(secondHint.MargLeft, secondHint.MargTop, secondHint.MargRight, secondHint.MargBott);
             }
         }
@@ -192,7 +193,7 @@ namespace ClientGui.ViewModel
         {
             get
             {
-                thirdHint = hintCalculator.GetHintBox3();
+                //thirdHint = hintCalculator.GetHintBox3();
                 return new Thickness(thirdHint.MargLeft, thirdHint.MargTop, thirdHint.MargRight, thirdHint.MargBott);
             }
         }
