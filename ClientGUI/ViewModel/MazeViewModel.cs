@@ -233,6 +233,7 @@ namespace ClientGui.ViewModel
         {
             player.Col = player.Col - 1;
             CallPropertyChanged("PlayerMargin");
+            speaker.PlayCommand("left");
             CheckIfWon();
         }
         
@@ -240,6 +241,7 @@ namespace ClientGui.ViewModel
         {
             player.Col = player.Col + 1;
             CallPropertyChanged("PlayerMargin");
+            speaker.PlayCommand("right");
             CheckIfWon();
         }
 
@@ -247,6 +249,7 @@ namespace ClientGui.ViewModel
         {
             player.Row = player.Row - 1;
             CallPropertyChanged("PlayerMargin");
+            speaker.PlayCommand("up");
             CheckIfWon();
         }
 
@@ -254,6 +257,7 @@ namespace ClientGui.ViewModel
         {
             player.Row = player.Row + 1;
             CallPropertyChanged("PlayerMargin");
+            speaker.PlayCommand("down");
             CheckIfWon();
         }
 

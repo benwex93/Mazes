@@ -69,8 +69,10 @@
     <Compile Include="Model\MazeData.cs" />
     <Compile Include="Model\MazeDimensions.cs" />
     <Compile Include="Model\MazeNodeData.cs" />
+    <Compile Include="Model\MoveData.cs" />
     <Compile Include="Model\MultiplayerControlModel.cs" />
     <Compile Include="Model\MultiplayerData.cs" />
+    <Compile Include="Model\PlayerMovedEventArgs.cs" />
     <Compile Include="Model\ServerSpeaker.cs" />
     <Compile Include="Model\SinglePlayerControlModel.cs" />
     <Compile Include="ViewModel\AppViewModel.cs" />
