@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 
 namespace ClientGui.Model
 {
     public class HintCalculator
     {
         private PlayerViewModel player, hintBox1, hintBox2, hintBox3;
+        private MazeData data;
+        private string mazeString;
         int[,] MazeArray;
         public HintCalculator(PlayerViewModel player, PlayerViewModel  hintBox1, PlayerViewModel hintBox2, 
             PlayerViewModel hintBox3, string MazeString)
@@ -18,6 +21,7 @@ namespace ClientGui.Model
             this.hintBox1 = hintBox1;
             this.hintBox2 = hintBox2;
             this.hintBox3 = hintBox3;
+            mazeString = MakeMazeData(MazeString);
             this.MazeArray = new int[AppViewModel.GetMazeDimensions().height,AppViewModel.GetMazeDimensions().length];
             for(int i = 0; i < AppViewModel.GetMazeDimensions().height; i++)
             {
@@ -55,6 +59,30 @@ namespace ClientGui.Model
         {
             hint3.Col = 5;
             hint3.Row = 5;
+        }
+        private string MakeMazeData(string str)
+        {
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            if (AppViewModel.CurrentGameIsMulti == false)
+            {
+                data = serializer.Deserialize<MazeData>(str);
+            }
+            else
+            {
+                MultiplayerData multiData = serializer.Deserialize<MultiplayerData>(str);
+                data = multiData.You;
+            }
+            DoTheThing();
+            return data.Maze;
+        }
+        private void DoTheThing()
+        {
+            int temp = data.Start.Col;
+            data.Start.Col = data.Start.Row;
+            data.Start.Row = temp;
+            temp = data.End.Col;
+            data.End.Col = data.End.Row;
+            data.End.Row = temp;
         }
     }
 }

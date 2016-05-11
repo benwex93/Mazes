@@ -54,12 +54,12 @@ namespace ClientGui.Model
 
         public void GenerateCommand()
         {
+            mazeCount++;
             singleMazeName = "maze" + mazeCount;
             string toSend = "generate " + singleMazeName + " 1";
             //Console.WriteLine(toSend);
             server.Send(Encoding.ASCII.GetBytes(toSend));
             ReceiveBack(false);
-            mazeCount++;
         }
 
         public void MultiplayerCommand(string nameOfGame)
