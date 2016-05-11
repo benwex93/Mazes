@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="ClientGui.View.MazeControl"
+﻿<UserControl x:Class="ClientGui.View.MazeControlPlayer2"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,19 +6,10 @@
              xmlns:local="clr-namespace:ClientGui.View"
              xmlns:viewmodel="clr-namespace:ClientGui.ViewModel"
              mc:Ignorable="d" 
-             Focusable="True"
-             IsTabStop="True"
-             Height="700" Width="550">
+             d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.DataContext>
-        <viewmodel:MazeViewModel/>
+        <viewmodel:Player2ViewModel/>
     </UserControl.DataContext>
-
-    <UserControl.InputBindings>
-        <KeyBinding Key="Down" Command="{Binding KeyDown}" />
-        <KeyBinding Key="Up" Command="{Binding KeyUp}" />
-        <KeyBinding Key="Left" Command="{Binding KeyLeft}" />
-        <KeyBinding Key="Right" Command="{Binding KeyRight}"/>
-    </UserControl.InputBindings>
 
     <Grid Margin="5,10,5,0">
         <ItemsControl ItemsSource="{Binding BoxList}">
@@ -43,7 +34,4 @@
             Source="{Binding EndImg}" Margin="{Binding EndMargin}">
         </Image>
     </Grid>
-
-
-
 </UserControl>

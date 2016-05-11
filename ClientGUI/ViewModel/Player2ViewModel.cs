@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections.ObjectModel;
-using System.Web.Script.Serialization;
-using System.ComponentModel;
 using ClientGui.Model;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Web.Script.Serialization;
 using System.Windows;
 using System.Windows.Input;
-using ClientGui.View;
 
 namespace ClientGui.ViewModel
 {
-    public class MazeViewModel : INotifyPropertyChanged
+    public class Player2ViewModel : INotifyPropertyChanged
     {
         private ServerSpeaker speaker;
         private ObservableCollection<MazeBoxViewModel> boxList;
@@ -25,7 +24,8 @@ namespace ClientGui.ViewModel
         private ICommand keyRight;
         private ICommand keyLeft;
         public event PropertyChangedEventHandler PropertyChanged;
-        public MazeViewModel()
+
+        public Player2ViewModel()
         {
             try
             {
@@ -33,17 +33,13 @@ namespace ClientGui.ViewModel
                 MakeMazeData();
                 boxList = MakeBoxList();
                 CallPropertyChanged("BoxList");
-                player = new PlayerViewModel(@"/Pictures/CalFinal.png", data.Start.Row, data.Start.Col);
+                player = new PlayerViewModel(@"/Pictures/BenjyFinal.png", data.Start.Row, data.Start.Col);
                 end = new PlayerViewModel(@"/Pictures/redsquare.png", data.End.Row, data.End.Col);
-                keyUp = new KeyUpCommand(this);
-                keyDown = new KeyDownCommand(this);
-                keyRight = new KeyRightCommand(this);
-                keyLeft = new KeyLeftCommand(this);
             }
             catch (Exception e)
             {
                 Console.WriteLine("Error in MazeViewModel constructor. " + e.ToString());
-            }  
+            }
         }
 
         public ObservableCollection<MazeBoxViewModel> BoxList
@@ -57,16 +53,12 @@ namespace ClientGui.ViewModel
 
         private void MakeMazeData()
         {
+            
+            
             string str = speaker.Get_Reply();
             JavaScriptSerializer serializer = new JavaScriptSerializer();
-            if (AppViewModel.CurrentGameIsMulti == false)
-            {
-                data = serializer.Deserialize<MazeData>(str);
-            } else
-            {
-                MultiplayerData multiData = serializer.Deserialize<MultiplayerData>(str);
-                data = multiData.You;        
-            }
+            MultiplayerData multiData = serializer.Deserialize<MultiplayerData>(str);
+            data = multiData.Other;
             DoTheThing();
         }
 
@@ -88,56 +80,16 @@ namespace ClientGui.ViewModel
                     char currChar = mazeStr[j + i * length];
                     if (currChar == '1')
                     {
-                        bList.Add(new MazeBoxViewModel() {colorImg = @"/Pictures/blacksquare.jpg" });
+                        bList.Add(new MazeBoxViewModel() { colorImg = @"/Pictures/blacksquare.jpg" });
                     }
                     else
                     {
-                        bList.Add(new MazeBoxViewModel() {colorImg = @"/Pictures/greensquare.png" });
+                        bList.Add(new MazeBoxViewModel() { colorImg = @"/Pictures/greensquare.png" });
                     }
                 }
             }
             return bList;
         }
-
-        /*public double PlayerMarginLeft
-        {
-            get
-            {
-                return player.Col * 13.5;
-            }
-            set
-            {
-
-            }
-        }
-
-        public double PlayerMarginRight
-        {
-            get
-            {
-                return (40 - 1 - player.Col) * 13.5;
-            }
-            set
-            {
-
-            }
-        }
-
-        public double PlayerMarginTop
-        {
-            get
-            {
-                return player.Row * 13.8;
-            }
-        }
-
-        public double PlayerMarginBott
-        {
-            get
-            {
-                return (50 - 1 - player.Row) * 13.8;
-            }
-        } */
 
         public Thickness PlayerMargin
         {
@@ -170,6 +122,7 @@ namespace ClientGui.ViewModel
             }
             set { }
         }
+
         public ICommand KeyUp
         {
             get
@@ -208,7 +161,7 @@ namespace ClientGui.ViewModel
             player.Col = player.Col - 1;
             CallPropertyChanged("PlayerMargin");
         }
-        
+
         public void MoveRight()
         {
             player.Col = player.Col + 1;
@@ -233,16 +186,6 @@ namespace ClientGui.ViewModel
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
-        }
-
-        public PlayerViewModel GetPlayer()
-        {
-            return player;
-        }
-
-        public MazeData GetMazeData()
-        {
-            return data;
         }
 
         private void DoTheThing()

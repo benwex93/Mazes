@@ -40,7 +40,7 @@
                 <Image Height="100" Source="../Pictures/Player-2.png"/>
                 <Image Height="100" Source="../Pictures/BenjyFinal.png"/>
             </StackPanel>
-            <local:MazeControl/>
+            <local:MazeControlPlayer2/>
         </StackPanel>
     </StackPanel>
 </UserControl>

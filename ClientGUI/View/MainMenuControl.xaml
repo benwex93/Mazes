@@ -45,7 +45,7 @@
                 <Image x:Name="Select2" Source="../Pictures/Select.png"  Visibility="{Binding menuSelectionVisibility2}"/>
                 <Image Height ="70" x:Name="Multiplayer" Source="../Pictures/Multiplayer.png">
                     <Image.InputBindings>
-                        <MouseBinding Gesture="LeftClick" Command="{Binding goToMultiplayerScreen}" />
+                        <MouseBinding Gesture="LeftClick" Command="{Binding goToSetNameScreen}" />
                     </Image.InputBindings>
                 </Image>
             </StackPanel>

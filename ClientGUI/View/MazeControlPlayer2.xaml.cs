@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace ClientGui.View
 {
     /// <summary>
-    /// Interaction logic for MultiplayerControl.xaml
+    /// Interaction logic for MazeControlPlayer2.xaml
     /// </summary>
-    public partial class MultiplayerControl : UserControl
+    public partial class MazeControlPlayer2 : UserControl
     {
-        public MultiplayerControl()
+        public MazeControlPlayer2()
         {
             InitializeComponent();
         }

@@ -23,6 +23,7 @@ namespace ClientGui.Model
             InitializeRunningAnimationTimer();
             InitializeBackgroundTimer();
             speaker = AppViewModel.GetServerSpeaker();
+            speaker.MultiplayReady += this.MultiplayerReady;
         }
         void InitializeBackgroundTimer()
         {
@@ -100,18 +101,33 @@ namespace ClientGui.Model
         public void SinglePlayerOption()
         {
             speaker.GenerateCommand();
+            AppViewModel.CurrentGameIsMulti = false;
             AppModel.SwitchCurrentView(new SinglePlayerControl());
         }
         public void MultiplayerOption()
         {
-            speaker.MultiplayerCommand();
-            AppModel.SwitchCurrentView(new MultiplayerControl());
+            speaker.MultiplayerCommand(mainMenuVM.MultiplayGameName);
+            Console.WriteLine("Waiting for multiplayer...and the Messiah");
+            //AppModel.SwitchCurrentView(new MultiplayerControl());
         }
         public void SettingsOption()
         {
             SettingsWindow settingsWindow = new SettingsWindow();
             settingsWindow.ShowDialog();
         }
-    }
 
+        public void MultiplayerNameSetter()
+        {
+            GameNameSetter GNS = new GameNameSetter();
+            GNS.DataContext = mainMenuVM;
+            GNS.ShowDialog();
+
+        }
+
+        public void MultiplayerReady(object source, EventArgs e)
+        {
+            AppViewModel.CurrentGameIsMulti = true;
+            AppModel.SwitchCurrentView(new MultiplayerControl());
+        }
+    }
 }
