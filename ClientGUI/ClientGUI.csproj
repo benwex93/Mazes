@@ -64,6 +64,7 @@
     </ApplicationDefinition>
     <Compile Include="Model\AppModel.cs" />
     <Compile Include="Model\ButtonICommand.cs" />
+    <Compile Include="Model\HintCalculator.cs" />
     <Compile Include="Model\MainMenuControlModel.cs" />
     <Compile Include="Model\MazeData.cs" />
     <Compile Include="Model\MazeDimensions.cs" />
@@ -111,6 +112,9 @@
     <Compile Include="View\SinglePlayerWindow.xaml.cs">
       <DependentUpon>SinglePlayerWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\VictoryScreen.xaml.cs">
+      <DependentUpon>VictoryScreen.xaml</DependentUpon>
+    </Compile>
     <Page Include="View\GameNameSetter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -152,6 +156,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SinglePlayerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\VictoryScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -237,6 +245,7 @@
   <ItemGroup>
     <Content Include="Music\PenguinWars.mp3" />
     <Content Include="Music\Tetris.mp3" />
+    <Resource Include="Pictures\You-Won.png" />
     <Resource Include="Pictures\NameOfYourGame.png" />
     <Resource Include="Pictures\redsquare.png" />
   </ItemGroup>

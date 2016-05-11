@@ -16,9 +16,15 @@ namespace ClientGui.ViewModel
     public class MazeViewModel : INotifyPropertyChanged
     {
         private ServerSpeaker speaker;
+        private double mainWinHeight = SystemParameters.PrimaryScreenHeight;
+        private double mainWinWidth = SystemParameters.PrimaryScreenWidth;
         private ObservableCollection<MazeBoxViewModel> boxList;
         private PlayerViewModel player;
         private PlayerViewModel end;
+        private PlayerViewModel firstHint;
+        private PlayerViewModel secondHint;
+        private PlayerViewModel thirdHint;
+        private HintCalculator hintCalculator;
         private MazeData data;
         private ICommand keyUp;
         private ICommand keyDown;
@@ -30,11 +36,15 @@ namespace ClientGui.ViewModel
             try
             {
                 speaker = AppViewModel.GetServerSpeaker();
-                data = GetMazeData(speaker.Get_Reply());
+                GetMazeData(speaker.Get_Reply());
                 boxList = MakeBoxList();
                 CallPropertyChanged("BoxList");
-                player = new PlayerViewModel(@"/Pictures/CalFinal.png", data.Start.Row, data.Start.Col);
-                end = new PlayerViewModel(@"/Pictures/redsquare.png", data.End.Row, data.End.Col);
+                player = new PlayerViewModel(@"/Pictures/CalFinal.png", data.Start.Row, data.Start.Col, DisplayMazeHeight, DisplayMazeWidth);
+                end = new PlayerViewModel(@"/Pictures/redsquare.png", data.End.Row, data.End.Col, DisplayMazeHeight, DisplayMazeWidth);
+                firstHint = new PlayerViewModel(@"/Pictures/yellowsquare.png", data.Start.Row, data.Start.Col-1, DisplayMazeHeight, DisplayMazeWidth);
+                secondHint = new PlayerViewModel(@"/Pictures/yellowsquare.png", data.Start.Row, data.Start.Col-2, DisplayMazeHeight, DisplayMazeWidth);
+                thirdHint = new PlayerViewModel(@"/Pictures/yellowsquare.png", data.Start.Row, data.Start.Col-3, DisplayMazeHeight, DisplayMazeWidth);
+                hintCalculator = new HintCalculator(player, firstHint, secondHint, thirdHint);
                 keyUp = new KeyUpCommand(this);
                 keyDown = new KeyDownCommand(this);
                 keyRight = new KeyRightCommand(this);
@@ -42,10 +52,31 @@ namespace ClientGui.ViewModel
             }
             catch (Exception e)
             {
-                Console.WriteLine("error getting maze" + e.ToString());
+                Console.WriteLine("Error in MazeViewModel constructor. " + e.ToString());
             }  
         }
-
+        public double DisplayMazeHeight
+        {
+            get
+            {
+                //if height reaches bounds of screen first
+                if (AppViewModel.GetMazeDimensions().height * mainWinHeight < AppViewModel.GetMazeDimensions().length * mainWinWidth)
+                    return (mainWinHeight - 155); //takes height of pic on top into account;
+                else
+                    return AppViewModel.GetMazeDimensions().height * ((mainWinWidth) / AppViewModel.GetMazeDimensions().length);
+            }
+        }
+        public double DisplayMazeWidth
+        {
+            get
+            {
+                //if height reaches bounds of screen first
+                if (AppViewModel.GetMazeDimensions().height * mainWinHeight < AppViewModel.GetMazeDimensions().length * mainWinWidth)
+                    return AppViewModel.GetMazeDimensions().length * ((mainWinHeight - 155) / AppViewModel.GetMazeDimensions().height);
+                else
+                    return mainWinWidth;
+            }
+        }
         public ObservableCollection<MazeBoxViewModel> BoxList
         {
             get
@@ -55,11 +86,11 @@ namespace ClientGui.ViewModel
             set { }
         }
 
-        private MazeData GetMazeData(string str)
+        private void GetMazeData(string str)
         {
             JavaScriptSerializer serializer = new JavaScriptSerializer();
-            MazeData data = serializer.Deserialize<MazeData>(str);
-            return data;
+            data = serializer.Deserialize<MazeData>(str);
+            DoTheThing();
         }
 
         private ObservableCollection<MazeBoxViewModel> MakeBoxList()
@@ -90,47 +121,6 @@ namespace ClientGui.ViewModel
             }
             return bList;
         }
-
-        /*public double PlayerMarginLeft
-        {
-            get
-            {
-                return player.Col * 13.5;
-            }
-            set
-            {
-
-            }
-        }
-
-        public double PlayerMarginRight
-        {
-            get
-            {
-                return (40 - 1 - player.Col) * 13.5;
-            }
-            set
-            {
-
-            }
-        }
-
-        public double PlayerMarginTop
-        {
-            get
-            {
-                return player.Row * 13.8;
-            }
-        }
-
-        public double PlayerMarginBott
-        {
-            get
-            {
-                return (50 - 1 - player.Row) * 13.8;
-            }
-        } */
-
         public Thickness PlayerMargin
         {
             get
@@ -147,13 +137,6 @@ namespace ClientGui.ViewModel
             }
             set { }
         }
-        public Thickness EndMargin
-        {
-            get
-            {
-                return new Thickness(end.MargLeft, end.MargTop, end.MargRight, end.MargBott);
-            }
-        }
         public string EndImg
         {
             get
@@ -161,6 +144,49 @@ namespace ClientGui.ViewModel
                 return end.Image;
             }
             set { }
+        }
+        public Thickness EndMargin
+        {
+            get
+            {
+                return new Thickness(end.MargLeft, end.MargTop, end.MargRight, end.MargBott);
+            }
+        }
+        public void GetHintOnMaze()
+        {
+            AppModel.SwitchCurrentView(new MainMenuControl());
+        }
+        public string HintImg
+        {
+            get
+            {
+                return firstHint.Image;
+            }
+            set { }
+        }
+        public Thickness FirstHintMargin
+        {
+            get
+            {
+                firstHint = hintCalculator.GetHintBox1();
+                return new Thickness(firstHint.MargLeft, firstHint.MargTop, firstHint.MargRight, firstHint.MargBott);
+            }
+        }
+        public Thickness SecondHintMargin
+        {
+            get
+            {
+                secondHint = hintCalculator.GetHintBox2();
+                return new Thickness(secondHint.MargLeft, secondHint.MargTop, secondHint.MargRight, secondHint.MargBott);
+            }
+        }
+        public Thickness ThirdHintMargin
+        {
+            get
+            {
+                thirdHint = hintCalculator.GetHintBox3();
+                return new Thickness(thirdHint.MargLeft, thirdHint.MargTop, thirdHint.MargRight, thirdHint.MargBott);
+            }
         }
         public ICommand KeyUp
         {
@@ -199,24 +225,28 @@ namespace ClientGui.ViewModel
         {
             player.Col = player.Col - 1;
             CallPropertyChanged("PlayerMargin");
+            CheckIfWon();
         }
         
         public void MoveRight()
         {
             player.Col = player.Col + 1;
             CallPropertyChanged("PlayerMargin");
+            CheckIfWon();
         }
 
         public void MoveUp()
         {
             player.Row = player.Row - 1;
             CallPropertyChanged("PlayerMargin");
+            CheckIfWon();
         }
 
         public void MoveDown()
         {
             player.Row = player.Row + 1;
             CallPropertyChanged("PlayerMargin");
+            CheckIfWon();
         }
 
         private void CallPropertyChanged(string propName)
@@ -235,6 +265,24 @@ namespace ClientGui.ViewModel
         public MazeData GetMazeData()
         {
             return data;
+        }
+
+        private void DoTheThing()
+        {
+            int temp = data.Start.Col;
+            data.Start.Col = data.Start.Row;
+            data.Start.Row = temp;
+            temp = data.End.Col;
+            data.End.Col = data.End.Row;
+            data.End.Row = temp;
+        }
+        private void CheckIfWon()
+        {
+            if (player.Col == data.End.Col && player.Row == data.End.Row)
+            {
+                VictoryScreen SW = new VictoryScreen();
+                SW.ShowDialog();
+            }
         }
     }
 }

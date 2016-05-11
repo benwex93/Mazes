@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              Focusable="True"
              IsTabStop="True"
-             Height="700" Width="550" MouseLeftButtonDown="LeftMouseClick">
+             MaxWidth="{Binding DisplayMazeWidth}" MaxHeight="{Binding DisplayMazeHeight}" MouseLeftButtonDown="LeftMouseClick">
     <UserControl.DataContext>
         <viewmodel:MazeViewModel/>
     </UserControl.DataContext>
@@ -41,6 +41,15 @@
         </Image>
         <Image
             Source="{Binding EndImg}" Margin="{Binding EndMargin}">
+        </Image>
+        <Image
+            Source="{Binding HintImg}" Margin="{Binding FirstHintMargin}">
+        </Image>
+        <Image
+            Source="{Binding HintImg}" Margin="{Binding SecondHintMargin}">
+        </Image>
+        <Image
+            Source="{Binding HintImg}" Margin="{Binding ThirdHintMargin}">
         </Image>
     </Grid>
 

@@ -1,0 +1,15 @@
+﻿<Window x:Class="ClientGui.View.VictoryScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClientGui.View"
+        mc:Ignorable="d"
+        Title="VictoryScreen" Height="300" Width="300">
+    <Grid Background="Black">
+        <StackPanel HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch">
+            <Image x:Name="image" Height="100" Source="../Pictures/You-Won.png"/>
+            <Button x:Name="OKbutton" Content="OK" Margin="60,20,60,30" FontSize="26.667" Click="OKbutton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

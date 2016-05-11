@@ -15,12 +15,11 @@ namespace ClientGui.ViewModel
         {
             model = new SinglePlayerControlModel();
             mainMenuCommand = new ButtonICommand(model.SinglePlayerOption);
-            getHintCommand = new ButtonICommand(model.GetHintOnMaze);
+           // getHintCommand = new ButtonICommand(model.GetHintOnMaze);
         }
       //  public event PropertyChangedEventHandler PropertyChanged;
         private ButtonICommand mainMenuCommand;
         private ButtonICommand getHintCommand;
-        private ButtonICommand focusAndStartCommand;
 
         //  public SolidColorBrush backgroundColor { get; set; } = new SolidColorBrush(Color.FromRgb(0, 0, 0));
         //public Visibility menuSelectionVisibility3 { get; set; } = Visibility.Hidden;
