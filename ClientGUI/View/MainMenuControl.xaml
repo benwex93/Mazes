@@ -57,6 +57,10 @@
                     </Image.InputBindings>
                 </Image>
             </StackPanel>
+            <StackPanel Orientation="Horizontal" Height ="Auto" Width ="Auto" HorizontalAlignment="Center">
+                <Image Source="../Pictures/Select.png"  Visibility="Hidden"/>
+                <Image x:Name="Waiting" Source="../Pictures/WaitingToConnect.png"  Visibility="{Binding waitingVisibility}"/>
+            </StackPanel>
         </StackPanel>
     </StackPanel>
 </UserControl>

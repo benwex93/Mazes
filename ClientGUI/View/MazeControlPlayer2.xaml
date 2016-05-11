@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:ClientGui.View"
              xmlns:viewmodel="clr-namespace:ClientGui.ViewModel"
              mc:Ignorable="d" 
-             Height="700" Width="550">
+             MaxWidth="{Binding DisplayMazeWidth}" MaxHeight="{Binding DisplayMazeHeight}">
     <UserControl.DataContext>
         <viewmodel:Player2ViewModel/>
     </UserControl.DataContext>
@@ -32,6 +32,15 @@
         </Image>
         <Image
             Source="{Binding EndImg}" Margin="{Binding EndMargin}">
+        </Image>
+        <Image
+            Source="{Binding HintImg}" Margin="{Binding FirstHintMargin}">
+        </Image>
+        <Image
+            Source="{Binding HintImg}" Margin="{Binding SecondHintMargin}">
+        </Image>
+        <Image
+            Source="{Binding HintImg}" Margin="{Binding ThirdHintMargin}">
         </Image>
     </Grid>
 </UserControl>

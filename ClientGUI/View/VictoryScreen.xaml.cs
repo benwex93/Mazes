@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClientGui.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,13 +16,19 @@ using System.Windows.Shapes;
 namespace ClientGui.View
 {
     /// <summary>
-    /// Interaction logic for GameNameSetter.xaml
+    /// Interaction logic for VictoryScreen.xaml
     /// </summary>
-    public partial class GameNameSetter : Window
+    public partial class VictoryScreen : Window
     {
-        public GameNameSetter()
+        public VictoryScreen()
         {
             InitializeComponent();
+        }
+
+        private void OKbutton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            AppModel.SwitchCurrentView(new MainMenuControl());
         }
     }
 }
