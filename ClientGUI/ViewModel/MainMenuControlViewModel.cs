@@ -21,18 +21,21 @@ namespace ClientGui.ViewModel
         public Visibility menuSelectionVisibility1 { get; set; } = Visibility.Visible;
         public Visibility menuSelectionVisibility2 { get; set; } = Visibility.Hidden;
         public Visibility menuSelectionVisibility3 { get; set; } = Visibility.Hidden;
+        private string multiGameName;
         public MainMenuControlViewModel()
         {
             model = new MainMenuControlModel(this);
             singlePlayerCommand = new ButtonICommand(model.SinglePlayerOption);
+            setNameCommand = new ButtonICommand(model.MultiplayerNameSetter);
             multiplayerCommand = new ButtonICommand(model.MultiplayerOption);
             settingsCommand = new ButtonICommand(model.SettingsOption);
         }
         MainMenuControlModel model;
 
         public ButtonICommand singlePlayerCommand;
-        public ButtonICommand multiplayerCommand;
+        public ButtonICommand setNameCommand;
         public ButtonICommand settingsCommand;
+        public ButtonICommand multiplayerCommand;
 
         public SolidColorBrush backgroundColor { get; set; } = new SolidColorBrush(Color.FromRgb(0, 0, 0));
         public ICommand goToSinglePlayerScreen
@@ -40,6 +43,13 @@ namespace ClientGui.ViewModel
             get
             {
                 return singlePlayerCommand;
+            }
+        }
+        public ICommand goToSetNameScreen
+        {
+            get
+            {
+                return setNameCommand;
             }
         }
         public ICommand goToMultiplayerScreen
@@ -54,6 +64,17 @@ namespace ClientGui.ViewModel
             get
             {
                 return settingsCommand;
+            }
+        }
+        public string MultiplayGameName
+        {
+            get
+            {
+                return multiGameName;
+            }
+            set
+            {
+                multiGameName = value;
             }
         }
         public void MainMenuVM_PropertyChanged(PropertyChangedEventArgs e)

@@ -36,7 +36,7 @@ namespace ClientGui.ViewModel
             try
             {
                 speaker = AppViewModel.GetServerSpeaker();
-                GetMazeData(speaker.Get_Reply());
+                MakeMazeData();
                 boxList = MakeBoxList();
                 CallPropertyChanged("BoxList");
                 player = new PlayerViewModel(@"/Pictures/CalFinal.png", data.Start.Row, data.Start.Col, DisplayMazeHeight, DisplayMazeWidth);
@@ -86,10 +86,18 @@ namespace ClientGui.ViewModel
             set { }
         }
 
-        private void GetMazeData(string str)
+        private void MakeMazeData()
         {
+            string str = speaker.Get_Reply();
             JavaScriptSerializer serializer = new JavaScriptSerializer();
-            data = serializer.Deserialize<MazeData>(str);
+            if (AppViewModel.CurrentGameIsMulti == false)
+            {
+                data = serializer.Deserialize<MazeData>(str);
+            } else
+            {
+                MultiplayerData multiData = serializer.Deserialize<MultiplayerData>(str);
+                data = multiData.You;        
+            }
             DoTheThing();
         }
 

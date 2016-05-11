@@ -11,12 +11,14 @@ namespace ClientGui.ViewModel
 {
     public static class AppViewModel
     {
+        private static bool currentGameIsMulti;
         private static SettingsInfo info;
         public static ServerSpeaker speaker;
         private static MazeDimensions dims;
 
         public static void ConfigureInfo()
         {
+            currentGameIsMulti = false;
             string ip = null;
             string portStr = null;
             int port;
@@ -66,6 +68,18 @@ namespace ClientGui.ViewModel
         public static MazeDimensions GetMazeDimensions()
         {
             return dims;
+        }
+
+        public static bool CurrentGameIsMulti
+        {
+            get
+            {
+                return currentGameIsMulti;
+            }
+            set
+            {
+                currentGameIsMulti = value;
+            }
         }
     }
 }

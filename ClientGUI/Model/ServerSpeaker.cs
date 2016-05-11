@@ -17,6 +17,9 @@ namespace ClientGui.Model
         private string singleMazeName;
         private int mazeCount;
 
+        public delegate void MultiplayReadyHandler(object source, EventArgs info);
+        public event MultiplayReadyHandler MultiplayReady;
+
         public ServerSpeaker(SettingsInfo info)
         {
             configs = info;
@@ -50,15 +53,24 @@ namespace ClientGui.Model
             string toSend = "generate " + singleMazeName + " 1";
             //Console.WriteLine(toSend);
             server.Send(Encoding.ASCII.GetBytes(toSend));
+            ReceiveBack(false);
+        }
+
+        public void MultiplayerCommand(string nameOfGame)
+        {
+            string toSend = "multiplayer " + nameOfGame;
+            server.Send(Encoding.ASCII.GetBytes(toSend));
+            ReceiveBack(true);
+        }
+
+        private void ReceiveBack(bool multi)
+        {
             byte[] data = new byte[5096];
             int recv = server.Receive(data);
             server_Reply = Encoding.ASCII.GetString(data, 0, recv);
             Console.WriteLine(server_Reply);
-        }
-
-        public void MultiplayerCommand()
-        {
-
+            if (multi)
+                MultiplayReady(this, EventArgs.Empty);
         }
     }
 }
