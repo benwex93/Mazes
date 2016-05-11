@@ -254,6 +254,7 @@
   <ItemGroup>
     <Content Include="Music\PenguinWars.mp3" />
     <Content Include="Music\Tetris.mp3" />
+    <Resource Include="Pictures\WaitingToConnect.png" />
     <Resource Include="Pictures\You-Won.png" />
     <Resource Include="Pictures\NameOfYourGame.png" />
     <Resource Include="Pictures\redsquare.png" />
