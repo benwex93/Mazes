@@ -54,12 +54,12 @@ namespace ClientGui.Model
 
         public void GenerateCommand()
         {
+            mazeCount++;
             singleMazeName = "maze" + mazeCount;
             string toSend = "generate " + singleMazeName + " 1";
             //Console.WriteLine(toSend);
             server.Send(Encoding.ASCII.GetBytes(toSend));
             ReceiveBack(false);
-            mazeCount++;
         }
 
         public void MultiplayerCommand(string nameOfGame)
@@ -92,17 +92,21 @@ namespace ClientGui.Model
             {
                 MultiplayReady(this, EventArgs.Empty);
                 Thread thr = new Thread(() => this.ListenForMoves());
+                thr.Start();
             }
         }
 
         private void ListenForMoves()
         {
-            byte[] data = new byte[100];
-            int recv = server.Receive(data);
-            string received = Encoding.ASCII.GetString(data, 0, recv);
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            MoveData md = serializer.Deserialize<MoveData>(received);
-            OtherMoved(this, new PlayerMovedEventArgs(md));
+            while (true)
+            {
+                byte[] data = new byte[100];
+                int recv = server.Receive(data);
+                string received = Encoding.ASCII.GetString(data, 0, recv);
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+                MoveData md = serializer.Deserialize<MoveData>(received);
+                OtherMoved(this, new PlayerMovedEventArgs(md));
+            }
         }
     }
 }
