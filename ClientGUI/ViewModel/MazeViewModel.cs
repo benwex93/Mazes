@@ -30,11 +30,13 @@ namespace ClientGui.ViewModel
         private ICommand keyDown;
         private ICommand keyRight;
         private ICommand keyLeft;
+        private bool isMulti;
         public event PropertyChangedEventHandler PropertyChanged;
         public MazeViewModel()
         {
             try
             {
+                isMulti = AppViewModel.CurrentGameIsMulti;
                 speaker = AppViewModel.GetServerSpeaker();
                 MakeMazeData();
                 boxList = MakeBoxList();
@@ -44,7 +46,7 @@ namespace ClientGui.ViewModel
                 firstHint = new PlayerViewModel(@"/Pictures/yellowsquare.png", data.Start.Row, data.Start.Col-1, DisplayMazeHeight, DisplayMazeWidth);
                 secondHint = new PlayerViewModel(@"/Pictures/yellowsquare.png", data.Start.Row, data.Start.Col-2, DisplayMazeHeight, DisplayMazeWidth);
                 thirdHint = new PlayerViewModel(@"/Pictures/yellowsquare.png", data.Start.Row, data.Start.Col-3, DisplayMazeHeight, DisplayMazeWidth);
-                speaker.SolveCommand();
+                //speaker.SolveCommand(data.Name);
                 hintCalculator = new HintCalculator(player, firstHint, secondHint, thirdHint, speaker.Get_Reply());
                 keyUp = new KeyUpCommand(this);
                 keyDown = new KeyDownCommand(this);
@@ -91,7 +93,7 @@ namespace ClientGui.ViewModel
         {
             string str = speaker.Get_Reply();
             JavaScriptSerializer serializer = new JavaScriptSerializer();
-            if (AppViewModel.CurrentGameIsMulti == false)
+            if (isMulti == false)
             {
                 data = serializer.Deserialize<MazeData>(str);
             } else
@@ -234,7 +236,8 @@ namespace ClientGui.ViewModel
         {
             player.Col = player.Col - 1;
             CallPropertyChanged("PlayerMargin");
-            speaker.PlayCommand("left");
+            if (isMulti)
+                speaker.PlayCommand("left");
             CheckIfWon();
         }
         
@@ -242,7 +245,8 @@ namespace ClientGui.ViewModel
         {
             player.Col = player.Col + 1;
             CallPropertyChanged("PlayerMargin");
-            speaker.PlayCommand("right");
+            if (isMulti)
+                speaker.PlayCommand("right");
             CheckIfWon();
         }
 
@@ -250,7 +254,8 @@ namespace ClientGui.ViewModel
         {
             player.Row = player.Row - 1;
             CallPropertyChanged("PlayerMargin");
-            speaker.PlayCommand("up");
+            if (isMulti)
+                speaker.PlayCommand("up");
             CheckIfWon();
         }
 
@@ -258,7 +263,8 @@ namespace ClientGui.ViewModel
         {
             player.Row = player.Row + 1;
             CallPropertyChanged("PlayerMargin");
-            speaker.PlayCommand("down");
+            if (isMulti)
+                speaker.PlayCommand("down");
             CheckIfWon();
         }
 

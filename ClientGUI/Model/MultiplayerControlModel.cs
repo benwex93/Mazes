@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ClientGui.ViewModel;
 
 namespace ClientGui.Model
 {
@@ -11,6 +12,8 @@ namespace ClientGui.Model
     {
         public void SinglePlayerOption()
         {
+            ServerSpeaker speaker = AppViewModel.GetServerSpeaker();
+            speaker.CloseMultiGame();
             AppModel.SwitchCurrentView(new MainMenuControl());
         }
         public void getHintOnMaze()

@@ -22,11 +22,11 @@ namespace ClientGui.Model
             this.hintBox2 = hintBox2;
             this.hintBox3 = hintBox3;
             mazeString = MakeMazeData(MazeString);
-            this.MazeArray = new int[AppViewModel.GetMazeDimensions().height,AppViewModel.GetMazeDimensions().length];
+            this.MazeArray = new int[AppViewModel.GetMazeDimensions().height, AppViewModel.GetMazeDimensions().length];
             for(int i = 0; i < AppViewModel.GetMazeDimensions().height; i++)
             {
                 for (int j = 0; j < AppViewModel.GetMazeDimensions().length; j++)
-                    MazeArray[i, j] = MazeString[j + i * AppViewModel.GetMazeDimensions().height];
+                    MazeArray[i, j] = MazeString[j + i * AppViewModel.GetMazeDimensions().length];
             }
 
         }

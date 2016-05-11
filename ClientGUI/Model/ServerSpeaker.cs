@@ -18,6 +18,8 @@ namespace ClientGui.Model
         private IPEndPoint ipep;
         private string singleMazeName;
         private int mazeCount;
+        private bool endMultiGame = true;
+        private string currMultiGame;
 
         public delegate void MultiplayReadyHandler(object source, EventArgs info);
         public event MultiplayReadyHandler MultiplayReady;
@@ -75,10 +77,9 @@ namespace ClientGui.Model
             server.Send(Encoding.ASCII.GetBytes(toSend));
         }
 
-        public void SolveCommand()
+        public void SolveCommand(string mazeName)
         {
-            string name = "maze" + mazeCount;
-            string toSend = "solve " + name + " 1";
+            string toSend = "solve " + mazeName + " 1";
             server.Send(Encoding.ASCII.GetBytes(toSend));
             ReceiveBack(false);
         }
@@ -91,6 +92,7 @@ namespace ClientGui.Model
             if (multi)
             {
                 MultiplayReady(this, EventArgs.Empty);
+                endMultiGame = false;
                 Thread thr = new Thread(() => this.ListenForMoves());
                 thr.Start();
             }
@@ -98,7 +100,7 @@ namespace ClientGui.Model
 
         private void ListenForMoves()
         {
-            while (true)
+            while (!endMultiGame) 
             {
                 byte[] data = new byte[100];
                 int recv = server.Receive(data);
@@ -107,6 +109,11 @@ namespace ClientGui.Model
                 MoveData md = serializer.Deserialize<MoveData>(received);
                 OtherMoved(this, new PlayerMovedEventArgs(md));
             }
+        }
+
+        public void CloseMultiGame()
+        {
+            endMultiGame = true;
         }
     }
 }
