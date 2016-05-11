@@ -16,7 +16,6 @@ namespace ClientGui.ViewModel
             model = new SinglePlayerControlModel();
             mainMenuCommand = new ButtonICommand(model.SinglePlayerOption);
             getHintCommand = new ButtonICommand(model.GetHintOnMaze);
-            focusAndStartCommand = new ButtonICommand(model.FocusAndStart);
         }
       //  public event PropertyChangedEventHandler PropertyChanged;
         private ButtonICommand mainMenuCommand;
@@ -38,13 +37,6 @@ namespace ClientGui.ViewModel
             get
             {
                 return getHintCommand;
-            }
-        }
-        public ICommand focusAndStart
-        {
-            get
-            {
-                return focusAndStartCommand;
             }
         }
         /** public void MainMenuVM_PropertyChanged(PropertyChangedEventArgs e)

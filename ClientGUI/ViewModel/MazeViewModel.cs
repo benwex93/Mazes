@@ -42,6 +42,7 @@ namespace ClientGui.ViewModel
             }
             catch (Exception e)
             {
+                Console.WriteLine("error getting maze" + e.ToString());
             }  
         }
 
