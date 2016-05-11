@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Web.Script.Serialization;
 using System.Windows;
 using System.Windows.Input;
+using System.Threading;
 
 namespace ClientGui.ViewModel
 {
@@ -19,10 +20,6 @@ namespace ClientGui.ViewModel
         private PlayerViewModel player;
         private PlayerViewModel end;
         private MazeData data;
-        private ICommand keyUp;
-        private ICommand keyDown;
-        private ICommand keyRight;
-        private ICommand keyLeft;
         private double mainWinHeight = SystemParameters.PrimaryScreenHeight;
         private double mainWinWidth = SystemParameters.PrimaryScreenWidth;
         public event PropertyChangedEventHandler PropertyChanged;
@@ -37,6 +34,7 @@ namespace ClientGui.ViewModel
                 CallPropertyChanged("BoxList");
                 player = new PlayerViewModel(@"/Pictures/BenjyFinal.png", data.Start.Row, data.Start.Col, DisplayMazeHeight, DisplayMazeWidth);
                 end = new PlayerViewModel(@"/Pictures/redsquare.png", data.End.Row, data.End.Col, DisplayMazeHeight, DisplayMazeWidth);
+                speaker.OtherMoved += this.OtherPlayerMoved;
             }
             catch (Exception e)
             {
@@ -146,7 +144,7 @@ namespace ClientGui.ViewModel
             set { }
         }
 
-        public ICommand KeyUp
+        /*public ICommand KeyUp
         {
             get
             {
@@ -177,6 +175,20 @@ namespace ClientGui.ViewModel
             {
                 return keyLeft;
             }
+        } */
+
+        private void OtherPlayerMoved(object source, PlayerMovedEventArgs p)
+        {
+            MoveData data = p.Info;
+            string dir = data.Move;
+            if (dir == "left")
+                this.MoveLeft();
+            else if (dir == "right")
+                this.MoveRight();
+            else if (dir == "up")
+                this.MoveUp();
+            else if (dir == "down")
+                this.MoveDown();
         }
 
         public void MoveLeft()

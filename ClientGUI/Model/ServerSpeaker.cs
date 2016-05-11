@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Net;
+using System.Threading;
+using System.Web.Script.Serialization;
 
 namespace ClientGui.Model
 {
@@ -19,6 +21,9 @@ namespace ClientGui.Model
 
         public delegate void MultiplayReadyHandler(object source, EventArgs info);
         public event MultiplayReadyHandler MultiplayReady;
+
+        public delegate void OtherMovedHandler(object source, PlayerMovedEventArgs info);
+        public event OtherMovedHandler OtherMoved;
 
         public ServerSpeaker(SettingsInfo info)
         {
@@ -54,6 +59,7 @@ namespace ClientGui.Model
             //Console.WriteLine(toSend);
             server.Send(Encoding.ASCII.GetBytes(toSend));
             ReceiveBack(false);
+            mazeCount++;
         }
 
         public void MultiplayerCommand(string nameOfGame)
@@ -63,6 +69,19 @@ namespace ClientGui.Model
             ReceiveBack(true);
         }
 
+        public void PlayCommand(string dir)
+        {
+            string toSend = "play " + dir;
+            server.Send(Encoding.ASCII.GetBytes(toSend));
+        }
+
+        public void SolveCommand()
+        {
+            string name = "maze" + mazeCount;
+            string toSend = "solve " + name + " 1";
+            server.Send(Encoding.ASCII.GetBytes(toSend));
+            ReceiveBack(false);
+        }
         private void ReceiveBack(bool multi)
         {
             byte[] data = new byte[5096];
@@ -70,7 +89,20 @@ namespace ClientGui.Model
             server_Reply = Encoding.ASCII.GetString(data, 0, recv);
             Console.WriteLine(server_Reply);
             if (multi)
+            {
                 MultiplayReady(this, EventArgs.Empty);
+                Thread thr = new Thread(() => this.ListenForMoves());
+            }
+        }
+
+        private void ListenForMoves()
+        {
+            byte[] data = new byte[100];
+            int recv = server.Receive(data);
+            string received = Encoding.ASCII.GetString(data, 0, recv);
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            MoveData md = serializer.Deserialize<MoveData>(received);
+            OtherMoved(this, new PlayerMovedEventArgs(md));
         }
     }
 }
