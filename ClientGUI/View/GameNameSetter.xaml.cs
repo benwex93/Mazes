@@ -23,9 +23,5 @@ namespace ClientGui.View
         {
             InitializeComponent();
         }
-        private void OKbutton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
     }
 }

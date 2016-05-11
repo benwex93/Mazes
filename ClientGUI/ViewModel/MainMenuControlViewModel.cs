@@ -21,6 +21,7 @@ namespace ClientGui.ViewModel
         public Visibility menuSelectionVisibility1 { get; set; } = Visibility.Visible;
         public Visibility menuSelectionVisibility2 { get; set; } = Visibility.Hidden;
         public Visibility menuSelectionVisibility3 { get; set; } = Visibility.Hidden;
+        public Visibility waitingVisibility { get; set; } = Visibility.Hidden;
         private string multiGameName;
         public MainMenuControlViewModel()
         {

@@ -23,6 +23,8 @@ namespace ClientGui.ViewModel
         private ICommand keyDown;
         private ICommand keyRight;
         private ICommand keyLeft;
+        private double mainWinHeight = SystemParameters.PrimaryScreenHeight;
+        private double mainWinWidth = SystemParameters.PrimaryScreenWidth;
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Player2ViewModel()
@@ -33,8 +35,8 @@ namespace ClientGui.ViewModel
                 MakeMazeData();
                 boxList = MakeBoxList();
                 CallPropertyChanged("BoxList");
-                player = new PlayerViewModel(@"/Pictures/BenjyFinal.png", data.Start.Row, data.Start.Col);
-                end = new PlayerViewModel(@"/Pictures/redsquare.png", data.End.Row, data.End.Col);
+                player = new PlayerViewModel(@"/Pictures/BenjyFinal.png", data.Start.Row, data.Start.Col, DisplayMazeHeight, DisplayMazeWidth);
+                end = new PlayerViewModel(@"/Pictures/redsquare.png", data.End.Row, data.End.Col, DisplayMazeHeight, DisplayMazeWidth);
             }
             catch (Exception e)
             {
@@ -90,7 +92,28 @@ namespace ClientGui.ViewModel
             }
             return bList;
         }
-
+        public double DisplayMazeHeight
+        {
+            get
+            {
+                //if height reaches bounds of screen first
+                if (AppViewModel.GetMazeDimensions().height * mainWinHeight < AppViewModel.GetMazeDimensions().length * mainWinWidth)
+                    return (mainWinHeight - 155); //takes height of pic on top into account;
+                else
+                    return AppViewModel.GetMazeDimensions().height * ((mainWinWidth) / AppViewModel.GetMazeDimensions().length);
+            }
+        }
+        public double DisplayMazeWidth
+        {
+            get
+            {
+                //if height reaches bounds of screen first
+                if (AppViewModel.GetMazeDimensions().height * mainWinHeight < AppViewModel.GetMazeDimensions().length * mainWinWidth)
+                    return AppViewModel.GetMazeDimensions().length * ((mainWinHeight - 155) / AppViewModel.GetMazeDimensions().height);
+                else
+                    return mainWinWidth;
+            }
+        }
         public Thickness PlayerMargin
         {
             get

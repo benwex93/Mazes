@@ -17,6 +17,7 @@ namespace ClientGui.Model
         private int animationTickCounter = 0;
         private MainMenuControlViewModel mainMenuVM;
         private ServerSpeaker speaker;
+        private GameNameSetter GNS;
         public MainMenuControlModel(MainMenuControlViewModel mainMenuVM)
         {
             this.mainMenuVM = mainMenuVM;
@@ -106,6 +107,9 @@ namespace ClientGui.Model
         }
         public void MultiplayerOption()
         {
+            mainMenuVM.waitingVisibility = Visibility.Visible;
+            mainMenuVM.MainMenuVM_PropertyChanged(new PropertyChangedEventArgs("waitingVisibility"));
+            GNS.Close();
             speaker.MultiplayerCommand(mainMenuVM.MultiplayGameName);
             Console.WriteLine("Waiting for multiplayer...and the Messiah");
             //AppModel.SwitchCurrentView(new MultiplayerControl());
@@ -118,10 +122,9 @@ namespace ClientGui.Model
 
         public void MultiplayerNameSetter()
         {
-            GameNameSetter GNS = new GameNameSetter();
+            GNS = new GameNameSetter();
             GNS.DataContext = mainMenuVM;
             GNS.ShowDialog();
-
         }
 
         public void MultiplayerReady(object source, EventArgs e)

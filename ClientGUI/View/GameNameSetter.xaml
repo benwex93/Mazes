@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClientGui.ViewModel"
         mc:Ignorable="d"
-        Title="Settings Window" Height="375.37" Width="333.99">
+        Title="Multiplayer Game" Height="375.37" Width="333.99">
 
     <Window.Resources>
         
@@ -15,13 +15,7 @@
         <StackPanel HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch">
             <Image x:Name="image" Height="100" Source="../Pictures/NameOfYourGame.png"/>
             <TextBox Height="40" TextWrapping="Wrap" Text="{Binding MultiplayGameName}" VerticalAlignment="Center" FontSize="26.667" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="20" SpellCheck.IsEnabled="True"/>
-            <Button x:Name="OKbutton" Content="OK" Margin="60,20,60,30" FontSize="26.667">
-                <Button.InputBindings>
-                    <MouseBinding
-                        Gesture="LeftClick" Command="{Binding goToMultiplayerScreen}">
-                    </MouseBinding>
-                </Button.InputBindings>
-            </Button>
+            <Button x:Name="OKbutton" Content="OK" Margin="60,20,60,30" FontSize="26.667" Command="{Binding goToMultiplayerScreen}"/>
         </StackPanel>
     </Grid>
 </Window>
