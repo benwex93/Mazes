@@ -13,19 +13,22 @@ namespace ClientGui.Model
     public class ServerSpeaker
     {
         private SettingsInfo configs;
-        private string server_Reply;
+        public string server_Reply;
         private Socket server;
         private IPEndPoint ipep;
         private string singleMazeName;
         private int mazeCount;
-        private bool endMultiGame = true;
         private string currMultiGame;
+        private Thread thread;
 
         public delegate void MultiplayReadyHandler(object source, EventArgs info);
         public event MultiplayReadyHandler MultiplayReady;
 
         public delegate void OtherMovedHandler(object source, PlayerMovedEventArgs info);
         public event OtherMovedHandler OtherMoved;
+
+        public delegate void EndMultiHandler(object source, EventArgs info);
+        public event EndMultiHandler EndMulti;
 
         public ServerSpeaker(SettingsInfo info)
         {
@@ -59,7 +62,6 @@ namespace ClientGui.Model
             mazeCount++;
             singleMazeName = "maze" + mazeCount;
             string toSend = "generate " + singleMazeName + " 1";
-            //Console.WriteLine(toSend);
             server.Send(Encoding.ASCII.GetBytes(toSend));
             ReceiveBack(false);
         }
@@ -68,6 +70,7 @@ namespace ClientGui.Model
         {
             string toSend = "multiplayer " + nameOfGame;
             server.Send(Encoding.ASCII.GetBytes(toSend));
+            currMultiGame = nameOfGame;
             ReceiveBack(true);
         }
 
@@ -88,32 +91,26 @@ namespace ClientGui.Model
             byte[] data = new byte[5096];
             int recv = server.Receive(data);
             server_Reply = Encoding.ASCII.GetString(data, 0, recv);
-            Console.WriteLine(server_Reply);
             if (multi)
             {
                 MultiplayReady(this, EventArgs.Empty);
-                endMultiGame = false;
-                Thread thr = new Thread(() => this.ListenForMoves());
-                thr.Start();
+                MoveListener listener = new MoveListener(server, this);
+                this.EndMulti += listener.StopListening;
+                thread = new Thread(() => listener.ListenForMoves());
+                thread.Start();
             }
         }
 
-        private void ListenForMoves()
+        public void MoveOccured(MoveData md)
         {
-            while (!endMultiGame) 
-            {
-                byte[] data = new byte[100];
-                int recv = server.Receive(data);
-                string received = Encoding.ASCII.GetString(data, 0, recv);
-                JavaScriptSerializer serializer = new JavaScriptSerializer();
-                MoveData md = serializer.Deserialize<MoveData>(received);
-                OtherMoved(this, new PlayerMovedEventArgs(md));
-            }
+            OtherMoved(this, new PlayerMovedEventArgs(md));
         }
 
         public void CloseMultiGame()
         {
-            endMultiGame = true;
+            EndMulti(this, EventArgs.Empty);
+            string toSend = "close " + currMultiGame;
+            server.Send(Encoding.ASCII.GetBytes(toSend));
         }
     }
 }

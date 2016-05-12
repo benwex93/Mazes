@@ -67,8 +67,6 @@ namespace ClientGui.ViewModel
             ObservableCollection<MazeBoxViewModel> bList = new ObservableCollection<MazeBoxViewModel>();
             string mazeStr = data.Maze;
 
-            //Console.WriteLine(mazeStr);
-
             MazeDimensions dims = AppViewModel.GetMazeDimensions();
             int height = dims.height;
             int length = dims.length;
@@ -143,39 +141,6 @@ namespace ClientGui.ViewModel
             }
             set { }
         }
-
-        /*public ICommand KeyUp
-        {
-            get
-            {
-                return keyUp;
-            }
-        }
-
-        public ICommand KeyDown
-        {
-            get
-            {
-                Console.WriteLine("Gets key down");               // PRINTED
-                return keyDown;
-            }
-        }
-
-        public ICommand KeyRight
-        {
-            get
-            {
-                return keyRight;
-            }
-        }
-
-        public ICommand KeyLeft
-        {
-            get
-            {
-                return keyLeft;
-            }
-        } */
 
         private void OtherPlayerMoved(object source, PlayerMovedEventArgs p)
         {

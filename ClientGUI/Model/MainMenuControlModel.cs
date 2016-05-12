@@ -87,7 +87,6 @@ namespace ClientGui.Model
         {
             GNS.Close();
             speaker.MultiplayerCommand(mainMenuVM.MultiplayGameName);
-            Console.WriteLine("Waiting for multiplayer...and the Messiah");
             //AppModel.SwitchCurrentView(new MultiplayerControl());
         }
         public void SettingsOption()
