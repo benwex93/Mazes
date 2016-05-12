@@ -18,7 +18,7 @@ namespace ClientGui.Model
         }
         public void getHintOnMaze()
         {
-            HintShow.DisplayHint();
+            //HintShow.DisplayHint();
         }
     }
 }

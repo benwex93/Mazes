@@ -31,6 +31,7 @@ namespace ClientGui.ViewModel
         private ICommand keyRight;
         private ICommand keyLeft;
         private bool isMulti;
+        private bool isFirstTime = true;
         public event PropertyChangedEventHandler PropertyChanged;
         public MazeViewModel()
         {
@@ -188,8 +189,12 @@ namespace ClientGui.ViewModel
         {
             get
             {
-                speaker.SolveCommand(data.Name);
-                firstHint = hintCalculator.GetHintBox1(firstHint);
+                if (!isFirstTime)
+                {
+                    speaker.SolveCommand(data.Name);
+                    firstHint = hintCalculator.GetHintBox1(firstHint);
+                }
+                isFirstTime = false;
                 return new Thickness(firstHint.MargLeft, firstHint.MargTop, firstHint.MargRight, firstHint.MargBott);
             }
         }
