@@ -43,13 +43,10 @@
             Source="{Binding EndImg}" Margin="{Binding EndMargin}">
         </Image>
         <Image
-            Source="{Binding HintImg}" Margin="{Binding FirstHintMargin}">
+            Visibility = "{Binding HintVisibility}" Source="{Binding HintImg}" Margin="{Binding FirstHintMargin}">
         </Image>
         <Image
-            Source="{Binding HintImg}" Margin="{Binding SecondHintMargin}">
-        </Image>
-        <Image
-            Source="{Binding HintImg}" Margin="{Binding ThirdHintMargin}">
+            Visibility = "{Binding HintVisibility}" Source="{Binding HintImg}" Margin="{Binding SecondHintMargin}">
         </Image>
     </Grid>
 

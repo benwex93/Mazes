@@ -23,7 +23,7 @@ namespace ClientGui.ViewModel
         private PlayerViewModel end;
         private PlayerViewModel firstHint;
         private PlayerViewModel secondHint;
-        private PlayerViewModel thirdHint;
+        private Visibility hintVisibility = Visibility.Hidden;
         private HintCalculator hintCalculator;
         private MazeData data;
         private ICommand keyUp;
@@ -45,9 +45,7 @@ namespace ClientGui.ViewModel
                 end = new PlayerViewModel(@"/Pictures/redsquare.png", data.End.Row, data.End.Col, DisplayMazeHeight, DisplayMazeWidth);
                 firstHint = new PlayerViewModel(@"/Pictures/yellowsquare.png", data.Start.Row, data.Start.Col-1, DisplayMazeHeight, DisplayMazeWidth);
                 secondHint = new PlayerViewModel(@"/Pictures/yellowsquare.png", data.Start.Row, data.Start.Col-2, DisplayMazeHeight, DisplayMazeWidth);
-                thirdHint = new PlayerViewModel(@"/Pictures/yellowsquare.png", data.Start.Row, data.Start.Col-3, DisplayMazeHeight, DisplayMazeWidth);
-                //speaker.SolveCommand(data.Name);
-                hintCalculator = new HintCalculator(player, firstHint, secondHint, thirdHint, speaker.Get_Reply());
+                hintCalculator = new HintCalculator(player, firstHint, secondHint);
                 keyUp = new KeyUpCommand(this);
                 keyDown = new KeyDownCommand(this);
                 keyRight = new KeyRightCommand(this);
@@ -56,7 +54,8 @@ namespace ClientGui.ViewModel
             catch (Exception e)
             {
                 Console.WriteLine("Error in MazeViewModel constructor. " + e.ToString());
-            }  
+            }
+            HintShow.LoadMazeViewModel(this);
         }
         public double DisplayMazeHeight
         {
@@ -163,9 +162,20 @@ namespace ClientGui.ViewModel
                 return new Thickness(end.MargLeft, end.MargTop, end.MargRight, end.MargBott);
             }
         }
-        public void GetHintOnMaze()
+        public Visibility HintVisibility
         {
-            AppModel.SwitchCurrentView(new MainMenuControl());
+            get
+            {
+                return hintVisibility;
+            }
+            set
+            {
+                if (hintVisibility != value)
+                {
+                    hintVisibility = value;
+                    CallPropertyChanged("HintVisibility");
+                }
+            }
         }
         public string HintImg
         {
@@ -179,7 +189,8 @@ namespace ClientGui.ViewModel
         {
             get
             {
-                //firstHint = hintCalculator.GetHintBox1();
+                speaker.SolveCommand(data.Name);
+                firstHint = hintCalculator.GetHintBox1(firstHint);
                 return new Thickness(firstHint.MargLeft, firstHint.MargTop, firstHint.MargRight, firstHint.MargBott);
             }
         }
@@ -187,16 +198,8 @@ namespace ClientGui.ViewModel
         {
             get
             {
-                //secondHint = hintCalculator.GetHintBox2();
+                secondHint = hintCalculator.GetHintBox2();
                 return new Thickness(secondHint.MargLeft, secondHint.MargTop, secondHint.MargRight, secondHint.MargBott);
-            }
-        }
-        public Thickness ThirdHintMargin
-        {
-            get
-            {
-                //thirdHint = hintCalculator.GetHintBox3();
-                return new Thickness(thirdHint.MargLeft, thirdHint.MargTop, thirdHint.MargRight, thirdHint.MargBott);
             }
         }
         public ICommand KeyUp
@@ -231,9 +234,9 @@ namespace ClientGui.ViewModel
                 return keyLeft;
             }
         }
-
         public void MoveLeft()
         {
+            HintShow.HideHint();
             player.Col = player.Col - 1;
             CallPropertyChanged("PlayerMargin");
             if (isMulti)
@@ -243,6 +246,7 @@ namespace ClientGui.ViewModel
         
         public void MoveRight()
         {
+            HintShow.HideHint();
             player.Col = player.Col + 1;
             CallPropertyChanged("PlayerMargin");
             if (isMulti)
@@ -252,6 +256,7 @@ namespace ClientGui.ViewModel
 
         public void MoveUp()
         {
+            HintShow.HideHint();
             player.Row = player.Row - 1;
             CallPropertyChanged("PlayerMargin");
             if (isMulti)
@@ -261,6 +266,7 @@ namespace ClientGui.ViewModel
 
         public void MoveDown()
         {
+            HintShow.HideHint();
             player.Row = player.Row + 1;
             CallPropertyChanged("PlayerMargin");
             if (isMulti)
@@ -268,7 +274,7 @@ namespace ClientGui.ViewModel
             CheckIfWon();
         }
 
-        private void CallPropertyChanged(string propName)
+        public void CallPropertyChanged(string propName)
         {
             if (PropertyChanged != null)
             {
@@ -294,6 +300,20 @@ namespace ClientGui.ViewModel
             temp = data.End.Col;
             data.End.Col = data.End.Row;
             data.End.Row = temp;
+        }
+        public ServerSpeaker GetServerSpeaker
+        {
+            get
+            {
+                return speaker;
+            }
+        }
+        public HintCalculator GetHintCalculator
+        {
+            get
+            {
+                return hintCalculator;
+            }
         }
         private void CheckIfWon()
         {

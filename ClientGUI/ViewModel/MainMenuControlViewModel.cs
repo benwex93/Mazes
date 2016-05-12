@@ -18,9 +18,6 @@ namespace ClientGui.ViewModel
         public Visibility calRun2 = Visibility.Hidden;
         public Visibility calRun3 = Visibility.Hidden;
         public Visibility calRun4 = Visibility.Hidden;
-        public Visibility menuSelect1 = Visibility.Visible;
-        public Visibility menuSelect2 = Visibility.Hidden;
-        public Visibility menuSelect3 = Visibility.Hidden;
         public Visibility waiting = Visibility.Hidden;
         private string multiGameName;
         public MainMenuControlViewModel()
@@ -85,42 +82,6 @@ namespace ClientGui.ViewModel
             {
                 calRun4 = value;
                 MainMenuVM_PropertyChanged("calRunning4Visibility");
-            }
-        }
-        public Visibility menuSelectionVisibility1
-        {
-            get
-            {
-                return menuSelect1;
-            }
-            set
-            {
-                menuSelect1 = value;
-                MainMenuVM_PropertyChanged("menuSelectionVisibility1");
-            }
-        }
-        public Visibility menuSelectionVisibility2
-        {
-            get
-            {
-                return menuSelect2;
-            }
-            set
-            {
-                menuSelect2 = value;
-                MainMenuVM_PropertyChanged("menuSelectionVisibility2");
-            }
-        }
-        public Visibility menuSelectionVisibility3
-        {
-            get
-            {
-                return menuSelect3;
-            }
-            set
-            {
-                menuSelect3 = value;
-                MainMenuVM_PropertyChanged("menuSelectionVisibility3");
             }
         }
         public Visibility waitingVisibility

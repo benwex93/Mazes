@@ -65,6 +65,7 @@
     <Compile Include="Model\AppModel.cs" />
     <Compile Include="Model\ButtonICommand.cs" />
     <Compile Include="Model\HintCalculator.cs" />
+    <Compile Include="Model\HintShow.cs" />
     <Compile Include="Model\MainMenuControlModel.cs" />
     <Compile Include="Model\MazeData.cs" />
     <Compile Include="Model\MazeDimensions.cs" />

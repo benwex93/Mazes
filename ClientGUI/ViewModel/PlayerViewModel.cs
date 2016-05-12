@@ -12,8 +12,12 @@ namespace ClientGui.ViewModel
         private string img;
         private int row;
         private int col;
-        private double displayMazeHeight;
-        private double displayMazeWidth;
+        public double displayMazeHeight {
+            get; }
+        public double displayMazeWidth
+        {
+            get;
+        }
         //private double margTop;
         //private double margLeft;
         //private double margRight;

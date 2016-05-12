@@ -56,29 +56,22 @@ namespace ClientGui.Model
             {
                 mainMenuVM.calRunning1Visibility = Visibility.Hidden;
                 mainMenuVM.calRunning2Visibility = Visibility.Visible;
-                mainMenuVM.menuSelectionVisibility1 = Visibility.Hidden;
-                mainMenuVM.menuSelectionVisibility2 = Visibility.Visible;
                 animationTickCounter++;
             }
             else if (animationTickCounter == 1)
             {
                 mainMenuVM.calRunning2Visibility = Visibility.Hidden;
                 mainMenuVM.calRunning3Visibility = Visibility.Visible;
-                mainMenuVM.menuSelectionVisibility2 = Visibility.Hidden;
-                mainMenuVM.menuSelectionVisibility3 = Visibility.Visible;
                 animationTickCounter++;
             }
             else if (animationTickCounter == 2)
             {
                 mainMenuVM.calRunning3Visibility = Visibility.Hidden;
                 mainMenuVM.calRunning4Visibility = Visibility.Visible;
-                mainMenuVM.menuSelectionVisibility3 = Visibility.Hidden;
-                mainMenuVM.menuSelectionVisibility1 = Visibility.Hidden;
                 animationTickCounter++;
             }
             else
             {
-                mainMenuVM.menuSelectionVisibility1 = Visibility.Visible;
                 mainMenuVM.calRunning4Visibility = Visibility.Hidden;
                 mainMenuVM.calRunning1Visibility = Visibility.Visible;
                 animationTickCounter = 0;

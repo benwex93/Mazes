@@ -13,5 +13,9 @@ namespace ClientGui.Model
         {
             AppModel.SwitchCurrentView(new MainMenuControl());
         }
+        public void GetHint()
+        {
+            HintShow.DisplayHint();
+        }
     }
 }

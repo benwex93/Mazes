@@ -34,7 +34,7 @@
         </Grid>
         <StackPanel HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal" Height ="Auto" Width ="Auto" HorizontalAlignment="Center">
-                <Image x:Name="Select1" Source="../Pictures/Select.png" Visibility="{Binding menuSelectionVisibility1}"/>
+                <Image x:Name="Select1" Source="../Pictures/Select.png" Visibility="Visible"/>
                 <Image Height ="70" x:Name="SinglePlayer" Source="../Pictures/Single-Player.png">
                     <Image.InputBindings>
                         <MouseBinding Gesture="LeftClick" Command="{Binding goToSinglePlayerScreen}" />
@@ -42,7 +42,7 @@
                 </Image>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Height ="Auto" Width ="Auto" HorizontalAlignment="Center">
-                <Image x:Name="Select2" Source="../Pictures/Select.png"  Visibility="{Binding menuSelectionVisibility2}"/>
+                <Image x:Name="Select2" Source="../Pictures/Select.png"  Visibility="Visible"/>
                 <Image Height ="70" x:Name="Multiplayer" Source="../Pictures/Multiplayer.png">
                     <Image.InputBindings>
                         <MouseBinding Gesture="LeftClick" Command="{Binding goToSetNameScreen}" />
@@ -50,7 +50,7 @@
                 </Image>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Height ="Auto" Width ="Auto" HorizontalAlignment="Center">
-                <Image x:Name="Select3" Source="../Pictures/Select.png"  Visibility="{Binding menuSelectionVisibility3}"/>
+                <Image x:Name="Select3" Source="../Pictures/Select.png"  Visibility="Visible"/>
                 <Image Height ="70" x:Name="Settings" Source="../Pictures/Settings.png">
                     <Image.InputBindings>
                         <MouseBinding Gesture="LeftClick" Command="{Binding goToSettings}" />

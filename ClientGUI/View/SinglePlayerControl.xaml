@@ -25,7 +25,7 @@
             </MediaElement.Triggers>
         </MediaElement>
         <StackPanel Orientation ="Horizontal" Height="Auto" HorizontalAlignment="Center" VerticalAlignment="Stretch" Width="Auto">
-            <Button x:Name="hint" Content="Hint!" Height="40" Margin="20" Width="80" HorizontalAlignment="Center" Command="{Binding getHint}"/>
+            <Button x:Name="hint" Content="Hint!" Height="40" Margin="20" Width="80" HorizontalAlignment="Center" Command="{Binding GetHint}"/>
             <Image x:Name="image" Height="100" Width="100" Source="../Pictures/CalFinal.png"/>
             <Button x:Name="back" Content="Go Back" Height="40" Margin="20" Width="80" HorizontalAlignment="Center" Command="{Binding goToMainMenu}"/>
         </StackPanel>
