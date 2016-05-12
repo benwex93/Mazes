@@ -14,11 +14,7 @@ namespace ClientGui.ViewModel
         private int col;
         private double displayMazeHeight;
         private double displayMazeWidth;
-        //private double margTop;
-        //private double margLeft;
-        //private double margRight;
-        //private double margBott;
-
+    
         public PlayerViewModel(string i, int r, int c, double displayMazeHeight, double displayMazeWidth)
         {
             img = i;
@@ -65,7 +61,6 @@ namespace ClientGui.ViewModel
         {
             get
             {
-                //return 13.7 * row;
                 return (displayMazeHeight / AppViewModel.GetMazeDimensions().height - .35) * row;
             }
         }
@@ -74,7 +69,6 @@ namespace ClientGui.ViewModel
         {
             get
             {
-                //return 13.7 * (50 - 1 - row);
                 return (displayMazeHeight / AppViewModel.GetMazeDimensions().height - .35) * (AppViewModel.GetMazeDimensions().height - 1 - row);
             }
         }
@@ -83,7 +77,6 @@ namespace ClientGui.ViewModel
         {
             get
             {
-                //return 13.45 * col;
                 return (displayMazeWidth / AppViewModel.GetMazeDimensions().length - .35) * col;
             }
         }
@@ -92,7 +85,6 @@ namespace ClientGui.ViewModel
         {
             get
             {
-                // return 13.45 * (40 - 1 - col);
                 return (displayMazeWidth / AppViewModel.GetMazeDimensions().length - .35) * (AppViewModel.GetMazeDimensions().length - 1 - col);
             }
         }

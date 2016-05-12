@@ -18,7 +18,6 @@ namespace ClientGui.ViewModel
 
         public bool CanExecute(object param)
         {
-            Console.WriteLine("CanExecute Function");           // NOT PRINTED!!!
             int row = maze.GetPlayer().Row + 1;
             int col = maze.GetPlayer().Col;
             int height = AppViewModel.GetMazeDimensions().height;
@@ -35,7 +34,6 @@ namespace ClientGui.ViewModel
         public void Execute(object param)
         {
             
-            Console.WriteLine("Execute function");      // NOT PRINTED!!!
             maze.MoveDown();
         }
     }

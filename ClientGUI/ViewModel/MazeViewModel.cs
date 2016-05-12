@@ -109,7 +109,6 @@ namespace ClientGui.ViewModel
             ObservableCollection<MazeBoxViewModel> bList = new ObservableCollection<MazeBoxViewModel>();
             string mazeStr = data.Maze;
 
-            //Console.WriteLine(mazeStr);
 
             MazeDimensions dims = AppViewModel.GetMazeDimensions();
             int height = dims.height;
@@ -211,7 +210,6 @@ namespace ClientGui.ViewModel
         {
             get
             {
-                Console.WriteLine("Gets key down");               // PRINTED
                 return keyDown;
             }
         }
