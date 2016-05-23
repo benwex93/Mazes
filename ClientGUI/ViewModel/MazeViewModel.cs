@@ -46,7 +46,7 @@ namespace ClientGui.ViewModel
                 end = new PlayerViewModel(@"/Pictures/redsquare.png", data.End.Row, data.End.Col, DisplayMazeHeight, DisplayMazeWidth);
                 firstHint = new PlayerViewModel(@"/Pictures/yellowsquare.png", data.Start.Row, data.Start.Col-1, DisplayMazeHeight, DisplayMazeWidth);
                 secondHint = new PlayerViewModel(@"/Pictures/yellowsquare.png", data.Start.Row, data.Start.Col-2, DisplayMazeHeight, DisplayMazeWidth);
-                hintCalculator = new HintCalculator(player, firstHint, secondHint);
+               // hintCalculator = new HintCalculator(player, firstHint, secondHint);
                 keyUp = new KeyUpCommand(this);
                 keyDown = new KeyDownCommand(this);
                 keyRight = new KeyRightCommand(this);
@@ -192,7 +192,7 @@ namespace ClientGui.ViewModel
                 if (!isFirstTime)
                 {
                     speaker.SolveCommand(data.Name);
-                    firstHint = hintCalculator.GetHintBox1(firstHint);
+                 //   firstHint = hintCalculator.GetHintBox1(firstHint);
                 }
                 isFirstTime = false;
                 return new Thickness(firstHint.MargLeft, firstHint.MargTop, firstHint.MargRight, firstHint.MargBott);
@@ -202,7 +202,7 @@ namespace ClientGui.ViewModel
         {
             get
             {
-                secondHint = hintCalculator.GetHintBox2();
+               // secondHint = hintCalculator.GetHintBox2();
                 return new Thickness(secondHint.MargLeft, secondHint.MargTop, secondHint.MargRight, secondHint.MargBott);
             }
         }
@@ -239,42 +239,58 @@ namespace ClientGui.ViewModel
         }
         public void MoveLeft()
         {
+            KeyLeft.CanExecute(false);
+            CallPropertyChanged("KeyLeft");
             HintShow.HideHint();
             player.Col = player.Col - 1;
             CallPropertyChanged("PlayerMargin");
             if (isMulti)
                 speaker.PlayCommand("left");
             CheckIfWon();
+            KeyLeft.CanExecute(true);
+            CallPropertyChanged("KeyLeft");
         }
         
         public void MoveRight()
         {
+            KeyRight.CanExecute(false);
+            CallPropertyChanged("KeyRight");
             HintShow.HideHint();
             player.Col = player.Col + 1;
             CallPropertyChanged("PlayerMargin");
             if (isMulti)
                 speaker.PlayCommand("right");
             CheckIfWon();
+            KeyRight.CanExecute(true);
+            CallPropertyChanged("KeyRight");
         }
 
         public void MoveUp()
         {
+            KeyUp.CanExecute(false);
+            CallPropertyChanged("KeyUp");
             HintShow.HideHint();
             player.Row = player.Row - 1;
             CallPropertyChanged("PlayerMargin");
             if (isMulti)
                 speaker.PlayCommand("up");
             CheckIfWon();
+            KeyUp.CanExecute(true);
+            CallPropertyChanged("KeyUp");
         }
 
         public void MoveDown()
         {
+            KeyDown.CanExecute(false);
+            CallPropertyChanged("KeyDown");
             HintShow.HideHint();
             player.Row = player.Row + 1;
             CallPropertyChanged("PlayerMargin");
             if (isMulti)
                 speaker.PlayCommand("down");
             CheckIfWon();
+            KeyDown.CanExecute(true);
+            CallPropertyChanged("KeyDown");
         }
 
         public void CallPropertyChanged(string propName)

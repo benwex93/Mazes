@@ -8,7 +8,7 @@ namespace ClientGui.Model
 {
     public class MoveStateObject
     {
-        public const int BufferSize = 30;
+        public const int BufferSize = 100;
         public byte[] buffer = new byte[BufferSize];
     }
 }
