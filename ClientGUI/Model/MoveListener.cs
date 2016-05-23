@@ -38,7 +38,7 @@ namespace ClientGui.Model
                 done.WaitOne();
             }
             Console.WriteLine("Broke out of while");
-            server.Close();            // Stop waiting for another move
+            server.Close();            // Stop waiting for another move, and
             speaker.MakeNewSocket();
         }
 
