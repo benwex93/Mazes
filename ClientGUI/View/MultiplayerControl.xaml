@@ -32,7 +32,7 @@
             <local:MazeControl x:Name="maze1" Loaded="Maze_Loaded"/>
         </StackPanel>
         <StackPanel Height="Auto" VerticalAlignment="Center" Width="Auto" HorizontalAlignment="Center">
-            <Button x:Name="hint" Content="Hint!" Height="40" Margin="20" Width="80" HorizontalAlignment="Center" Command="{Binding getHint}"/>
+            <Button x:Name="hint" Content="Hint!" Height="40" Margin="20" Width="80" HorizontalAlignment="Center"/>
             <Button x:Name="back" Content="Go Back" Height="40" Margin="20" Width="80" HorizontalAlignment="Center" Command="{Binding goToMainMenu}"/>
         </StackPanel>
         <StackPanel Height="Auto" Width="Auto" Name ="Player2">
