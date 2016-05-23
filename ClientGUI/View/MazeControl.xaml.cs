@@ -51,10 +51,10 @@ namespace ClientGui.View
             catch (Exception exc) { }
         }
 
-        private void LeftMouseClick(object sender, MouseButtonEventArgs e)
+        /*private void LeftMouseClick(object sender, MouseButtonEventArgs e)
         {
             Keyboard.Focus(sender as MazeControl);
-        }
+        } */
 
         /*public void MoveKeyCommandToWindow()
         {

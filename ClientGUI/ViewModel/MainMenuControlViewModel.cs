@@ -14,32 +14,100 @@ namespace ClientGui.ViewModel
     public class MainMenuControlViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        public Visibility calRunning1Visibility { get; set; } = Visibility.Visible;
-        public Visibility calRunning2Visibility { get; set; } = Visibility.Hidden;
-        public Visibility calRunning3Visibility { get; set; } = Visibility.Hidden;
-        public Visibility calRunning4Visibility { get; set; } = Visibility.Hidden;
-        public Visibility menuSelectionVisibility1 { get; set; } = Visibility.Visible;
-        public Visibility menuSelectionVisibility2 { get; set; } = Visibility.Hidden;
-        public Visibility menuSelectionVisibility3 { get; set; } = Visibility.Hidden;
+        public Visibility calRun1 = Visibility.Visible;
+        public Visibility calRun2 = Visibility.Hidden;
+        public Visibility calRun3 = Visibility.Hidden;
+        public Visibility calRun4 = Visibility.Hidden;
+        public Visibility waiting = Visibility.Hidden;
+        private string multiGameName;
         public MainMenuControlViewModel()
         {
             model = new MainMenuControlModel(this);
             singlePlayerCommand = new ButtonICommand(model.SinglePlayerOption);
+            setNameCommand = new ButtonICommand(model.MultiplayerNameSetter);
             multiplayerCommand = new ButtonICommand(model.MultiplayerOption);
             settingsCommand = new ButtonICommand(model.SettingsOption);
         }
         MainMenuControlModel model;
 
         public ButtonICommand singlePlayerCommand;
-        public ButtonICommand multiplayerCommand;
+        public ButtonICommand setNameCommand;
         public ButtonICommand settingsCommand;
+        public ButtonICommand multiplayerCommand;
 
         public SolidColorBrush backgroundColor { get; set; } = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+        public Visibility calRunning1Visibility
+        {
+            get
+            {
+                return calRun1;
+            }
+            set
+            {
+                calRun1 = value;
+                MainMenuVM_PropertyChanged("calRunning1Visibility");
+            }
+        }
+        public Visibility calRunning2Visibility
+        {
+            get
+            {
+                return calRun2;
+            }
+            set
+            {
+                calRun2 = value;
+                MainMenuVM_PropertyChanged("calRunning2Visibility");
+            }
+        }
+        public Visibility calRunning3Visibility
+        {
+            get
+            {
+                return calRun3;
+            }
+            set
+            {
+                calRun3 = value;
+                MainMenuVM_PropertyChanged("calRunning3Visibility");
+            }
+        }
+        public Visibility calRunning4Visibility
+        {
+            get
+            {
+                return calRun4;
+            }
+            set
+            {
+                calRun4 = value;
+                MainMenuVM_PropertyChanged("calRunning4Visibility");
+            }
+        }
+        public Visibility waitingVisibility
+        {
+            get
+            {
+                return waiting;
+            }
+            set
+            {
+                waiting = value;
+                MainMenuVM_PropertyChanged("waitingVisibility");
+            }
+        }
         public ICommand goToSinglePlayerScreen
         {
             get
             {
                 return singlePlayerCommand;
+            }
+        }
+        public ICommand goToSetNameScreen
+        {
+            get
+            {
+                return setNameCommand;
             }
         }
         public ICommand goToMultiplayerScreen
@@ -56,10 +124,21 @@ namespace ClientGui.ViewModel
                 return settingsCommand;
             }
         }
-        public void MainMenuVM_PropertyChanged(PropertyChangedEventArgs e)
+        public string MultiplayGameName
+        {
+            get
+            {
+                return multiGameName;
+            }
+            set
+            {
+                multiGameName = value;
+            }
+        }
+        public void MainMenuVM_PropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
-                PropertyChanged(this, e);
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

@@ -13,9 +13,9 @@ namespace ClientGui.Model
         {
             AppModel.SwitchCurrentView(new MainMenuControl());
         }
-        public void GetHintOnMaze()
+        public void GetHint()
         {
-            AppModel.SwitchCurrentView(new MainMenuControl());
+            HintShow.DisplayHint();
         }
     }
 }

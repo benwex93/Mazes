@@ -64,11 +64,18 @@
     </ApplicationDefinition>
     <Compile Include="Model\AppModel.cs" />
     <Compile Include="Model\ButtonICommand.cs" />
+    <Compile Include="Model\HintCalculator.cs" />
+    <Compile Include="Model\HintShow.cs" />
     <Compile Include="Model\MainMenuControlModel.cs" />
     <Compile Include="Model\MazeData.cs" />
     <Compile Include="Model\MazeDimensions.cs" />
     <Compile Include="Model\MazeNodeData.cs" />
+    <Compile Include="Model\MoveData.cs" />
+    <Compile Include="Model\MoveListener.cs" />
+    <Compile Include="Model\MoveStateObject.cs" />
     <Compile Include="Model\MultiplayerControlModel.cs" />
+    <Compile Include="Model\MultiplayerData.cs" />
+    <Compile Include="Model\PlayerMovedEventArgs.cs" />
     <Compile Include="Model\ServerSpeaker.cs" />
     <Compile Include="Model\SinglePlayerControlModel.cs" />
     <Compile Include="ViewModel\AppViewModel.cs" />
@@ -82,6 +89,7 @@
     <Compile Include="ViewModel\MazeInfo.cs" />
     <Compile Include="ViewModel\MazeViewModel.cs" />
     <Compile Include="ViewModel\MutliplayerControlViewModel.cs" />
+    <Compile Include="ViewModel\Player2ViewModel.cs" />
     <Compile Include="ViewModel\PlayerViewModel.cs" />
     <Compile Include="ViewModel\SinglePlayerControlViewModel.cs" />
     <Compile Include="View\GameNameSetter.xaml.cs">
@@ -92,6 +100,9 @@
     </Compile>
     <Compile Include="View\MazeControl.xaml.cs">
       <DependentUpon>MazeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MazeControlPlayer2.xaml.cs">
+      <DependentUpon>MazeControlPlayer2.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MazeDisplay.cs" />
     <Compile Include="View\MultiplayerControl.xaml.cs">
@@ -110,6 +121,9 @@
     </Compile>
     <Compile Include="View\SinglePlayerWindow.xaml.cs">
       <DependentUpon>SinglePlayerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\VictoryScreen.xaml.cs">
+      <DependentUpon>VictoryScreen.xaml</DependentUpon>
     </Compile>
     <Page Include="View\GameNameSetter.xaml">
       <SubType>Designer</SubType>
@@ -135,6 +149,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\MazeControlPlayer2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MultiplayerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -152,6 +170,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SinglePlayerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\VictoryScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -237,6 +259,8 @@
   <ItemGroup>
     <Content Include="Music\PenguinWars.mp3" />
     <Content Include="Music\Tetris.mp3" />
+    <Resource Include="Pictures\WaitingToConnect.png" />
+    <Resource Include="Pictures\You-Won.png" />
     <Resource Include="Pictures\NameOfYourGame.png" />
     <Resource Include="Pictures\redsquare.png" />
   </ItemGroup>

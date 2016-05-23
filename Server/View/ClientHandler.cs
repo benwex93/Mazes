@@ -63,7 +63,7 @@ namespace Server
                     p.DoNewTask(str, tHandler);
                 } catch
                 {
-
+                    break;
                 }
 			}
 			client.Close ();

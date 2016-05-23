@@ -22,9 +22,11 @@ namespace ClientGui.View
     {
         public MultiplayerControl()
         {
-            GameNameSetter GNS = new GameNameSetter();
-            GNS.ShowDialog();
             InitializeComponent();
+        }
+        private void Maze_Loaded(object sender, RoutedEventArgs e)
+        {
+            maze1.Focus();
         }
     }
 }

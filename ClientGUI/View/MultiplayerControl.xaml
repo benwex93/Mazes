@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              Background="Black">
     <UserControl.DataContext>
-        <viewmodel:SinglePlayerControlViewModel/>
+        <viewmodel:MutliplayerControlViewModel/>
     </UserControl.DataContext>
     <StackPanel Orientation="Horizontal">
         <MediaElement Name="myMediaElement">
@@ -29,10 +29,10 @@
                 <Image Height="100" Source="../Pictures/Player-1.png"/>
                 <Image Height="100" Source="../Pictures/CalFinal.png"/>
             </StackPanel>
-            <local:MazeControl/>
+            <local:MazeControl x:Name="maze1" Loaded="Maze_Loaded"/>
         </StackPanel>
         <StackPanel Height="Auto" VerticalAlignment="Center" Width="Auto" HorizontalAlignment="Center">
-            <Button x:Name="hint" Content="Hint!" Height="40" Margin="20" Width="80" HorizontalAlignment="Center" Command="{Binding getHint}"/>
+            <Button x:Name="hint" Content="Hint!" Height="40" Margin="20" Width="80" HorizontalAlignment="Center"/>
             <Button x:Name="back" Content="Go Back" Height="40" Margin="20" Width="80" HorizontalAlignment="Center" Command="{Binding goToMainMenu}"/>
         </StackPanel>
         <StackPanel Height="Auto" Width="Auto" Name ="Player2">
@@ -40,7 +40,7 @@
                 <Image Height="100" Source="../Pictures/Player-2.png"/>
                 <Image Height="100" Source="../Pictures/BenjyFinal.png"/>
             </StackPanel>
-            <local:MazeControl/>
+            <local:MazeControlPlayer2/>
         </StackPanel>
     </StackPanel>
 </UserControl>

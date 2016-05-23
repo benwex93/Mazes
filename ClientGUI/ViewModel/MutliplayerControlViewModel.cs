@@ -17,10 +17,8 @@ namespace ClientGui.ViewModel
             mainMenuCommand = new ButtonICommand(model.SinglePlayerOption);
             getHintCommand = new ButtonICommand(model.getHintOnMaze);
         }
-        //  public event PropertyChangedEventHandler PropertyChanged;
         private ButtonICommand mainMenuCommand;
         private ButtonICommand getHintCommand;
-        private string gameName;
         public ICommand goToMainMenu
         {
             get
@@ -33,17 +31,6 @@ namespace ClientGui.ViewModel
             get
             {
                 return getHintCommand;
-            }
-        }
-        public string GameName
-        {
-            get
-            {
-                return gameName;
-            }
-            set
-            {
-
             }
         }
     }
